@@ -1,6 +1,6 @@
 Name:           folks
-Version:        0.1.14
-Release:        2%{?dist}
+Version:        0.1.14.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -42,7 +42,7 @@ make %{?_smp_mflags} V=1
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so.0.12.1
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so.0.12.*
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/12/backends/telepathy/libfolks-backend-telepathy.so
 
 
@@ -66,6 +66,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/12/backends/telepathy/libfolks-
 
 
 %changelog
+* Thu Aug 19 2010 Yanko Kaneti <yaneti@declera.com> 0.1.14.1-1
+- New upstream release. Requires vala >= 0.9.6
+
 * Thu Aug 19 2010 Yanko Kaneti <yaneti@declera.com> 0.1.14-2
 - Use chrpath to remove the lingering RPATH because the guidelines
   recomended sed makes libtool incapable of building the tp-lowlevel.gir.
