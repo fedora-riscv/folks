@@ -1,5 +1,5 @@
 Name:           folks
-Version:        0.1.14.1
+Version:        0.1.15
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -11,7 +11,6 @@ Source0:        http://download.gnome.org/sources/folks/0.1/%{name}-%{version}.t
 BuildRequires:  telepathy-glib-devel telepathy-glib-vala
 BuildRequires:  vala-devel vala-tools
 BuildRequires:  libgee-devel
-BuildRequires:  chrpath
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g. 
@@ -35,15 +34,12 @@ developing applications that use %{name}.
 
 %build
 %configure --disable-static
-sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags} V=1
 
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so.0.12.*
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/12/backends/telepathy/libfolks-backend-telepathy.so
 
 
 %post -p /sbin/ldconfig
@@ -66,6 +62,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/12/backends/telepathy/libfolks-
 
 
 %changelog
+* Thu Aug 30 2010 Yanko Kaneti <yaneti@declera.com> 0.1.15-1
+- New upstream release. Drop the RPATH hacks.
+
 * Thu Aug 19 2010 Yanko Kaneti <yaneti@declera.com> 0.1.14.1-1
 - New upstream release. Requires vala >= 0.9.6
 
