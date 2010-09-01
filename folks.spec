@@ -1,5 +1,5 @@
 Name:           folks
-Version:        0.1.15
+Version:        0.1.16
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -62,6 +62,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Sep  1 2010 Yanko Kaneti <yaneti@declera.com> 0.1.16-1
+- New upstream release.
+
 * Thu Aug 30 2010 Yanko Kaneti <yaneti@declera.com> 0.1.15-1
 - New upstream release. Drop the RPATH hacks.
 
