@@ -1,19 +1,20 @@
+%define tp_glib_ver	0.11.16
+
 Name:           folks
-Version:        0.1.17
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://download.gnome.org/sources/folks/0.1/%{name}-%{version}.tar.bz2
-# https://bugzilla.gnome.org/show_bug.cgi?id=629452
-Patch0:		%{name}-%{version}-DSO_linking.patch
+Source0:        http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
 
 
-BuildRequires:  telepathy-glib-devel >= 0.11.11
+BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
-BuildRequires:  vala-devel
+BuildRequires:  glib2-devel
+BuildRequires:  vala-devel >= 0.10.0
 BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
@@ -28,6 +29,10 @@ Facebook, etc.) to create meta-contacts.
 Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
+Requires:	telepathy-glib-devel >= %{tp_glib_ver}
+Requires:	libgee-devel
+Requires:	glib2-devel
+Requires:	pkgconfig
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -36,7 +41,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .dso
 
 
 %build
@@ -70,6 +74,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Sat Sep 25 2010 Brian Pepple <bpepple@fedoraproject.org> - 0.2.0-1
+- Update to 0.2.0.
+- Add missing requires to devel subpackage.
+- Drop DSO linkng patch. Fixed upstream.
+
 * Sun Sep 12 2010 Brian Pepple <bpepple@fedoraproject.org> - 0.1.17-1
 - Update to 0.1.17.
 - Add patch to fix DSO linking for import tool.
