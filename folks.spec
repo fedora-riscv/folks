@@ -2,7 +2,7 @@
 
 Name:           folks
 Version:        0.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -74,6 +74,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Sep 29 2010 jkeating - 0.2.0-2
+- Rebuilt for gcc bug 634757
+
 * Sat Sep 25 2010 Brian Pepple <bpepple@fedoraproject.org> - 0.2.0-1
 - Update to 0.2.0.
 - Add missing requires to devel subpackage.
