@@ -1,14 +1,15 @@
-%define tp_glib_ver	0.13.1
+%define tp_glib_ver	0.11.16
 
 Name:           folks
-Version:        0.3.1
-Release:        1%{?dist}
+Epoch:          1
+Version:        0.2.0
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://download.gnome.org/sources/folks/0.3/%{name}-%{version}.tar.bz2
+Source0:        http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
 
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
@@ -74,6 +75,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Oct 25 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.0-3
+- Revert back to 0.2.x until gtk-2.92.1 or greater is in rawhide.
+
 * Wed Oct 20 2010 Brian Pepple <bpepple@fedoraproject.org> - 0.3.1-1
 - Update to 0.3.1.
 - Update source url.
