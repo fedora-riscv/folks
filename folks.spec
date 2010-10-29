@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.2.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -29,7 +29,7 @@ Facebook, etc.) to create meta-contacts.
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{epoch}:%{version}-%{release}
 Requires:	telepathy-glib-devel >= %{tp_glib_ver}
 Requires:	libgee-devel
 Requires:	glib2-devel
@@ -75,6 +75,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Oct 29 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.0-4
+- Add epoch to devel subpackage requires.
+
 * Mon Oct 25 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.0-3
 - Revert back to 0.2.x until gtk-2.92.1 or greater is in rawhide.
 
