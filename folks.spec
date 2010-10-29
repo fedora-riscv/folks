@@ -2,14 +2,15 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.2.0
-Release:        4%{?dist}
+Version:        0.2.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
+Patch0:		dso-linking.patch
 
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
@@ -42,7 +43,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-
+%patch0 -p1 -b .dso
 
 %build
 %configure --disable-static
@@ -75,6 +76,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Oct 29 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.1-1
+- Update to 0.2.1.
+- Add patch to fix dso linking. (fdo #633511)
+
 * Fri Oct 29 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.0-4
 - Add epoch to devel subpackage requires.
 
