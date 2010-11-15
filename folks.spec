@@ -1,16 +1,15 @@
-%define tp_glib_ver	0.11.16
+%define tp_glib_ver	0.13.1
 
 Name:           folks
 Epoch:          1
-Version:        0.2.1
+Version:        0.3.2
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
-Patch0:		dso-linking.patch
+Source0:        http://download.gnome.org/sources/folks/0.3/%{name}-%{version}.tar.bz2
 
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
@@ -20,6 +19,7 @@ BuildRequires:  vala-devel >= 0.10.0
 BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
+BuildRequires:  gobject-introspection >= 0.9.12
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g. 
@@ -43,7 +43,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .dso
+
 
 %build
 %configure --disable-static
@@ -53,6 +53,7 @@ make %{?_smp_mflags} V=1
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%find_lang %{name}
 
 
 %post -p /sbin/ldconfig
@@ -60,7 +61,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %postun -p /sbin/ldconfig
 
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README
 %{_bindir}/%{name}-import
@@ -76,6 +77,12 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Sun Nov 14 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.3.2-1
+- Update to 0.3.2.
+- Update min version of tp-glib.
+- Update source url.
+- Drop dso linking patch. Fixed upstream.
+
 * Fri Oct 29 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.2.1-1
 - Update to 0.2.1.
 - Add patch to fix dso linking. (fdo #633511)
