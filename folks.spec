@@ -2,7 +2,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.3.2
+Version:        0.3.3
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -77,6 +77,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Tue Dec 14 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.3.3-1
+- Update to 0.3.3.
+
 * Sun Nov 14 2010 Brian Pepple <bpepple@fedoraproject.org> - 1:0.3.2-1
 - Update to 0.3.2.
 - Update min version of tp-glib.
