@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.3.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -77,6 +77,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.3.4-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Mon Jan 31 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.3.4-1
 - Update to 0.3.4.
 
