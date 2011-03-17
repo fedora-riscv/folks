@@ -3,13 +3,13 @@
 Name:           folks
 Epoch:          1
 Version:        0.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://download.gnome.org/sources/folks/0.3/%{name}-%{version}.tar.bz2
+Source0:        http://download.gnome.org/sources/folks/0.4/%{name}-%{version}.tar.bz2
 
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
@@ -77,6 +77,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Mar 17 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.0-2
+- Update source url.
+
 * Thu Mar 17 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.0-1
 - Update to 0.4.0.
 
