@@ -2,7 +2,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.3.6
+Version:        0.4.0
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -15,7 +15,7 @@ Source0:        http://download.gnome.org/sources/folks/0.3/%{name}-%{version}.t
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
-BuildRequires:  vala-devel >= 0.10.0
+BuildRequires:  vala-devel >= 0.11.6
 BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
@@ -77,6 +77,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Mar 17 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.0-1
+- Update to 0.4.0.
+
 * Mon Feb 14 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.3.6-1
 - Update to 0.3.6.
 
