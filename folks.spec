@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.4.0
-Release:        2%{?dist}
+Version:        0.4.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -77,6 +77,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Mar 18 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.1-1
+- Update to 0.4.1.
+
 * Thu Mar 17 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.0-2
 - Update source url.
 
