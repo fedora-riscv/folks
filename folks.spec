@@ -20,6 +20,7 @@ BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
+BuildRequires:	GConf2-devel
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g. 
@@ -79,6 +80,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %changelog
 * Fri Jun 10 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.5.2-1
 - Update to 0.5.2.
+- Add BR on GConf2-devel.
 
 * Wed Mar 23 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.4.2-1
 - Update to 0.4.2.
