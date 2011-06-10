@@ -68,6 +68,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_bindir}/%{name}-import
 %{_libdir}/*.so.*
 %{_libdir}/folks
+%{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_datadir}/vala/vapi/%{name}*
 
 %files devel
@@ -75,6 +76,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_includedir}/folks
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
+%{_datadir}/gir-1.0/Folks-0.6.gir
 
 
 %changelog
