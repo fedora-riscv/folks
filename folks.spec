@@ -2,25 +2,29 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.5.2
+Version:        0.6.0
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://download.gnome.org/sources/folks/0.4/%{name}-%{version}.tar.bz2
+Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
 
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
-BuildRequires:  vala-devel >= 0.12.0
+BuildRequires:  vala-devel >= 0.13.0
 BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:	GConf2-devel
+BuildRequires:	evolution-data-server-devel >= 3.0.1
+BuildRequires:	libsocialweb-devel >= 0.25.15
+## BuildRequires:	tracker-devel >= 0.10
+
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g. 
@@ -47,7 +51,7 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static
+%configure --disable-static --enable-eds-backend
 make %{?_smp_mflags} V=1
 
 
@@ -80,6 +84,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Sat Aug 13 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.0-1
+- Update to 0.6.0.
+- Update source url.
+- Add BR on eds-devel and libsocialweb-devel.
+
 * Fri Jun 10 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.5.2-1
 - Update to 0.5.2.
 - Add BR on GConf2-devel.
