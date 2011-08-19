@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.0
-Release:        3%{?dist}
+Release:        5%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -11,6 +11,8 @@ License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
 
+# upstream fix
+Patch0:         0001-Make-sure-we-pass-ENABLE_EDS-to-vala-flags.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -20,26 +22,27 @@ BuildRequires:  vala-tools
 BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
-BuildRequires:	GConf2-devel
-BuildRequires:	evolution-data-server-devel >= 3.0.1
-BuildRequires:	libsocialweb-devel >= 0.25.15
-## BuildRequires:	tracker-devel >= 0.10
+BuildRequires:  GConf2-devel
+BuildRequires:  evolution-data-server-devel >= 3.0.1
+BuildRequires:  libsocialweb-devel >= 0.25.15
+## BuildRequires: tracker-devel >= 0.10
+BuildRequires:  autoconf automake libtool
 
 
 %description
-libfolks is a library that aggregates people from multiple sources (e.g. 
-Telepathy connection managers and eventually evolution data server, 
-Facebook, etc.) to create meta-contacts. 
+libfolks is a library that aggregates people from multiple sources (e.g.
+Telepathy connection managers and eventually evolution data server,
+Facebook, etc.) to create meta-contacts.
 
 
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{epoch}:%{version}-%{release}
-Requires:	telepathy-glib-devel >= %{tp_glib_ver}
-Requires:	libgee-devel
-Requires:	glib2-devel
-Requires:	pkgconfig
+Requires:       telepathy-glib-devel >= %{tp_glib_ver}
+Requires:       libgee-devel
+Requires:       glib2-devel
+Requires:       pkgconfig
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -48,7 +51,9 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1
 
+autoreconf -i -f
 
 %build
 %configure --disable-static --enable-eds-backend
@@ -84,7 +89,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
-* Fri Aug 19 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.0-3
+* Fri Aug 19 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.0-4
 - Try again to rebuild
 
 * Tue Aug 16 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.0-2
