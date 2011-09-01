@@ -1,13 +1,13 @@
 diff -up folks-0.6.1/folks/Folks-0.6.typelib folks-0.6.1/folks/Folks-0.6
-diff -up folks-0.6.1/folks/Makefile.typelib folks-0.6.1/folks/Makefile
---- folks-0.6.1/folks/Makefile.typelib	2011-09-01 15:31:08.657393575 -0400
-+++ folks-0.6.1/folks/Makefile	2011-09-01 15:31:18.804394323 -0400
+diff -up folks-0.6.1/folks/Makefile.in.typelib folks-0.6.1/folks/Makefile.in
+--- folks-0.6.1/folks/Makefile.in.typelib	2011-09-01 16:12:41.457577828 -0400
++++ folks-0.6.1/folks/Makefile.in	2011-09-01 16:12:53.173578695 -0400
 @@ -460,7 +460,7 @@ GITIGNOREFILES = \
  
  INTROSPECTION_GIRS = 
  INTROSPECTION_SCANNER_ARGS = 
 -INTROSPECTION_COMPILER_ARGS = -l libfolks.so
 +INTROSPECTION_COMPILER_ARGS = -l libfolks.so.25
- GIRS = Folks-$(API_VERSION).gir
- girdir = $(datadir)/gir-1.0
- dist_gir_DATA = $(GIRS)
+ @HAVE_INTROSPECTION_TRUE@GIRS = Folks-$(API_VERSION).gir
+ @HAVE_INTROSPECTION_TRUE@girdir = $(datadir)/gir-1.0
+ @HAVE_INTROSPECTION_TRUE@dist_gir_DATA = $(GIRS)
