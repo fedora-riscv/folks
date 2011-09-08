@@ -2,7 +2,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.2
+Version:        0.6.2.1
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -88,6 +88,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2.1-1
+- Update to 0.6.2.1
+
 * Thu Sep  8 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.2-1
 - Update to 0.6.2
 - Use old libgee api.
