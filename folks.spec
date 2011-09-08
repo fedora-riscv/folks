@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.1
-Release:        4%{?dist}
+Version:        0.6.2
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -88,6 +88,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2-1
+- Update to 0.6.2
+
 * Wed Sep  7 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.1-4
 - Try again
 
