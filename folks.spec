@@ -51,7 +51,6 @@ developing applications that use %{name}.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 autoreconf -i -f
 
