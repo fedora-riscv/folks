@@ -19,13 +19,13 @@ BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.13.0
 BuildRequires:  vala-tools
-BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.0.1
 BuildRequires:  libsocialweb-devel >= 0.25.15
 ## BuildRequires: tracker-devel >= 0.10
+BuildRequires:  pkgconfig(gee-1.0)
 
 
 %description
@@ -39,9 +39,9 @@ Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{epoch}:%{version}-%{release}
 Requires:       telepathy-glib-devel >= %{tp_glib_ver}
-Requires:       libgee-devel
 Requires:       glib2-devel
 Requires:       pkgconfig
+Requires:	pkgconfig(gee-1.0)
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -88,8 +88,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
-* Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2-1
+* Thu Sep  8 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.2-1
 - Update to 0.6.2
+- Use old libgee api.
 
 * Wed Sep  7 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.1-4
 - Try again
