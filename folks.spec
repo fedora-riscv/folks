@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.2
-Release:        2%{?dist}
+Version:        0.6.2.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -13,9 +13,6 @@ Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.t
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=658002
 Patch0: folks-typelib.patch
-
-# upstream fix
-Patch1: reentrancy-is-the-suck.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -92,6 +89,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2.1-1
+- Really fix the reentrancy problem, by using 0.6.2.1
+
 * Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2-2
 - Fix a reentrancy problem that causes gnome-shell to crash
 
