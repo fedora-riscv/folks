@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -53,6 +53,9 @@ developing applications that use %{name}.
 %patch0 -p1
 
 autoreconf -i -f
+# Mistakenly distributed
+# https://bugzilla.gnome.org/show_bug.cgi?id=659095
+rm folks/Folks-*.typelib
 
 %build
 %configure --disable-static --enable-eds-backend
@@ -88,6 +91,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Sep 14 2011 Owen Taylor <otaylor@redhat.com> - 1:0.6.2.1-2
+- Really fix the typelib to embed the right .so file
+
 * Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2.1-1
 - Really fix the reentrancy problem, by using 0.6.2.1
 
