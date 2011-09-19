@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.2.1
-Release:        2%{?dist}
+Version:        0.6.3
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -11,21 +11,18 @@ License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
 
-# https://bugzilla.gnome.org/show_bug.cgi?id=658002
-Patch0: folks-typelib.patch
-
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.13.0
 BuildRequires:  vala-tools
-BuildRequires:  libgee-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.0.1
+BuildRequires:  evolution-data-server-devel >= 3.1.5
 BuildRequires:  libsocialweb-devel >= 0.25.15
 ## BuildRequires: tracker-devel >= 0.10
+BuildRequires:  pkgconfig(gee-1.0)
 
 
 %description
@@ -39,9 +36,9 @@ Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{epoch}:%{version}-%{release}
 Requires:       telepathy-glib-devel >= %{tp_glib_ver}
-Requires:       libgee-devel
 Requires:       glib2-devel
 Requires:       pkgconfig
+Requires:	pkgconfig(gee-1.0)
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -50,12 +47,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
 
-autoreconf -i -f
-# Mistakenly distributed
-# https://bugzilla.gnome.org/show_bug.cgi?id=659095
-rm folks/Folks-*.typelib
 
 %build
 %configure --disable-static --enable-eds-backend
@@ -91,6 +83,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Sep 19 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.3-1
+- Update to 0.6.3.
+- Drop typelib patch. Fixed upstream.
+
 * Wed Sep 14 2011 Owen Taylor <otaylor@redhat.com> - 1:0.6.2.1-2
 - Really fix the typelib to embed the right .so file
 
@@ -101,7 +97,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 - Fix a reentrancy problem that causes gnome-shell to crash
 
 * Thu Sep  8 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.2-1
+- Update to 0.6.2.1
+
+* Thu Sep  8 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.2-1
 - Update to 0.6.2
+- Use old libgee api.
 
 * Wed Sep  7 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.1-4
 - Try again
