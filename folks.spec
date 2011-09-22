@@ -3,13 +3,16 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
+
+# upstream fix
+Patch0: folks-typelib.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -47,6 +50,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1 
 
 
 %build
@@ -83,6 +87,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Sep 21 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.3-2
+- Fix another typelib problem
+
 * Mon Sep 19 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.3-1
 - Update to 0.6.3.
 - Drop typelib patch. Fixed upstream.
