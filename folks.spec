@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -83,6 +83,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Oct 24 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.4.1-2
+- Rebuld against libcamel.
+
 * Tue Oct 18 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.4.1-1
 - Update to 0.6.4.1.
 
