@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -83,6 +83,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Oct 26 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.6.4.1-2
+- Rebuilt for glibc bug#747377
+
 * Wed Oct 19 2011 Matthias Clasen <mclasen@redhat.com> - 1:0.6.4.1-1
 - Update to 0.6.4.1
 
