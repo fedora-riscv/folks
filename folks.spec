@@ -3,13 +3,15 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
+
+Patch0:		0001-Ensure-NameDetails-public-strings-are-non-null-as-we.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -47,7 +49,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-
+%patch0 -p1
 
 %build
 %configure --disable-static --enable-eds-backend
@@ -83,6 +85,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Sun Nov 27 2011 Colin Walters <walters@verbum.org> - 1:0.6.5-3
+- Add patch from git to fix gnome-shell crashes
+
 * Tue Nov 22 2011 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.5-2
 - Rebuild against new eds
 

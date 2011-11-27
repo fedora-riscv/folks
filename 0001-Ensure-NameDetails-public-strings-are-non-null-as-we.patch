@@ -1,0 +1,57 @@
+From 50bc2ead6f963da7942d1c06cdd5e1a9e354fc85 Mon Sep 17 00:00:00 2001
+From: Travis Reitter <travis.reitter@collabora.co.uk>
+Date: Mon, 14 Nov 2011 14:29:21 -0800
+Subject: [PATCH] Ensure NameDetails public strings are non-null as we
+ promise.
+
+Closes: bug#663889 - crash due to NameDetails which fail to guarantee
+non-null full-name/nickname
+---
+ NEWS                                    |    2 ++
+ backends/eds/lib/edsf-persona.vala      |    2 ++
+ backends/telepathy/lib/tpf-persona.vala |    2 ++
+ backends/tracker/lib/trf-persona.vala   |    2 ++
+ 4 files changed, 8 insertions(+), 0 deletions(-)
+
+diff --git a/NEWS b/NEWS
+index f2754c1..9805051 100644
+--- a/backends/eds/lib/edsf-persona.vala
++++ b/backends/eds/lib/edsf-persona.vala
+@@ -700,6 +700,8 @@ public class Edsf.Persona : Folks.Persona,
+       var full_name =
+           (string) Edsf.Persona._get_property_from_contact (contact,
+               "full_name");
++      if (full_name == null)
++        full_name = "";
+ 
+       debug ("Creating new Edsf.Persona with IID '%s'", iid);
+ 
+diff --git a/backends/telepathy/lib/tpf-persona.vala b/backends/telepathy/lib/tpf-persona.vala
+index 2a626c9..b25ee32 100644
+--- a/backends/telepathy/lib/tpf-persona.vala
++++ b/backends/telepathy/lib/tpf-persona.vala
+@@ -752,6 +752,8 @@ public class Tpf.Persona : Folks.Persona,
+           else if (info.field_name == "fn")
+             {
+               new_full_name = info.field_value[0];
++              if (new_full_name == null)
++                new_full_name = "";
+             }
+           else if (info.field_name == "tel")
+             {
+diff --git a/backends/tracker/lib/trf-persona.vala b/backends/tracker/lib/trf-persona.vala
+index 636bbe3..45c674a 100644
+--- a/backends/tracker/lib/trf-persona.vala
++++ b/backends/tracker/lib/trf-persona.vala
+@@ -1102,6 +1102,8 @@ public class Trf.Persona : Folks.Persona,
+           var proto = addr_info[Trf.IMFields.PROTO];
+           var account_id = addr_info[Trf.IMFields.ID];
+           var nickname = addr_info[Trf.IMFields.IM_NICKNAME];
++          if (nickname == null)
++            nickname = "";
+ 
+           this._update_nickname (nickname);
+           this._add_im_address (tracker_id, proto, account_id, false);
+-- 
+1.7.6.4
+
