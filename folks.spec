@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -41,6 +41,8 @@ Requires:       telepathy-glib-devel >= %{tp_glib_ver}
 Requires:       glib2-devel
 Requires:       pkgconfig
 Requires:	pkgconfig(gee-1.0)
+Requires:	vala-devel >= 0.13.4
+Requires:	vala-tools
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -74,7 +76,6 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
-%{_datadir}/vala/vapi/%{name}*
 
 %files devel
 %defattr(-,root,root,-)
@@ -82,9 +83,13 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
 %{_datadir}/gir-1.0/Folks-0.6.gir
+%{_datadir}/vala/vapi/%{name}*
 
 
 %changelog
+* Wed Nov 30 2011 Peter Robinson <pbrobinson@fedoraproject.org> - 1:0.6.5-4
+- Move the vala vapi files to the devel package where they should be and add the appropriate requires
+
 * Sun Nov 27 2011 Colin Walters <walters@verbum.org> - 1:0.6.5-3
 - Add patch from git to fix gnome-shell crashes
 
