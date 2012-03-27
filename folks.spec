@@ -2,7 +2,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.7
+Version:        0.6.8
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -14,13 +14,13 @@ Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.t
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
-BuildRequires:  vala-devel >= 0.13.4
+BuildRequires:  vala-devel >= 0.15.2
 BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.1.5
-BuildRequires:  libsocialweb-devel >= 0.25.15
+BuildRequires:  libsocialweb-devel >= 0.25.20
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
 
@@ -39,7 +39,7 @@ Requires:       telepathy-glib-devel >= %{tp_glib_ver}
 Requires:       glib2-devel
 Requires:       pkgconfig
 Requires:	pkgconfig(gee-1.0)
-Requires:	vala-devel >= 0.13.4
+Requires:	vala-devel >= 0.15.2
 Requires:	vala-tools
 
 %description    devel
@@ -86,6 +86,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Mar 26 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-1
+- Update to 0.6.8.
+- Bump minimum verions of libsocialweb-devel and vala-devel.
+
 * Wed Feb 22 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.7-1
 - Update to 0.6.7.
 
