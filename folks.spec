@@ -1,15 +1,16 @@
-%define tp_glib_ver	0.13.1
+%define tp_glib_ver	0.15.5
 
 Name:           folks
 Epoch:          1
 Version:        0.6.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
+Patch0:         folks-use_tp_connection_get_account.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -49,10 +50,11 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1 -b .connection
 
 
 %build
-%configure --disable-static --enable-eds-backend
+%configure --disable-static --enable-eds-backend --enable-vala
 make %{?_smp_mflags} V=1
 
 
@@ -86,6 +88,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Mar 30 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-2
+- Backport patch to fix crash cause by TpAccount are out of sync.
+- Bump minimum version of tp-glib needed.
+
 * Mon Mar 26 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-1
 - Update to 0.6.8.
 - Bump minimum verions of libsocialweb-devel and vala-devel.

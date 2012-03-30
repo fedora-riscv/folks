@@ -1,0 +1,92 @@
+From 278de0b59eb5dee93f8436e982901438a55d5b19 Mon Sep 17 00:00:00 2001
+From: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
+Date: Wed, 28 Mar 2012 09:22:28 +0000
+Subject: tpf-persona: use tp_connection_get_account()
+
+telepathy-glib introduced API to get the TpAccount of a TpConnection so Folks
+doesn't have to do it manually.
+
+This has the nice side effect of fixing a crash when TpAccount/TpConnection
+are momentary out of sync while connecting/disconnecting accounts.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=672980
+---
+diff --git a/NEWS b/NEWS
+index 0abe146..6d89c74 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,7 +1,11 @@
+ Overview of changes from libfolks 0.6.8 to libfolks 0.6.9
+ =============================================================
+ 
++Dependencies:
++• telepathy-glib ≥ 0.15.5
++
+ Bugs fixed:
++• Bug 672980 — tp_account_get_protocol: assertion `TP_IS_ACCOUNT (account)' failed
+ 
+ Overview of changes from libfolks 0.6.7 to libfolks 0.6.8
+ =============================================================
+diff --git a/backends/telepathy/lib/tpf-persona.vala b/backends/telepathy/lib/tpf-persona.vala
+index 0b23b33..282b35d 100644
+--- a/backends/telepathy/lib/tpf-persona.vala
++++ b/backends/telepathy/lib/tpf-persona.vala
+@@ -614,7 +614,7 @@ public class Tpf.Persona : Folks.Persona,
+     {
+       unowned string id = contact.get_identifier ();
+       var connection = contact.connection;
+-      var account = this._account_for_connection (connection);
++      var account = connection.get_account ();
+       var uid = this.build_uid (store.type_id, store.id, id);
+ 
+       Object (contact: contact,
+@@ -663,7 +663,7 @@ public class Tpf.Persona : Folks.Persona,
+ 
+       /* Set our single IM address */
+       var connection = this.contact.connection;
+-      var account = this._account_for_connection (connection);
++      var account = connection.get_account ();
+ 
+       try
+         {
+@@ -1005,25 +1005,6 @@ public class Tpf.Persona : Folks.Persona,
+         }
+     }
+ 
+-  private static Account? _account_for_connection (Connection conn)
+-    {
+-      var manager = AccountManager.dup ();
+-      var accounts = manager.get_valid_accounts ();
+-
+-      Account account_found = null;
+-      accounts.foreach ((l) =>
+-        {
+-          unowned Account account = (Account) l;
+-          if (account.connection == conn)
+-            {
+-              account_found = account;
+-              return;
+-            }
+-        });
+-
+-      return account_found;
+-    }
+-
+   private void _contact_notify_presence_message ()
+     {
+       this.presence_message = this.contact.get_presence_message ();
+diff --git a/configure.ac b/configure.ac
+index c540bc5..2f5cd0d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -145,7 +145,7 @@ AM_CONDITIONAL([ENABLE_LIBSOCIALWEB],
+ # -----------------------------------------------------------
+ 
+ GLIB_REQUIRED=2.24.0
+-TP_GLIB_REQUIRED=0.13.1
++TP_GLIB_REQUIRED=0.15.5
+ VALA_REQUIRED=0.15.2
+ VALADOC_REQUIRED=0.3.1
+ TRACKER_SPARQL_MAJOR=0.14
+--
+cgit v0.9.0.2
