@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -88,6 +88,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Tue Apr 03 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-3
+- Rebuild against new tp-glib.
+
 * Fri Mar 30 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-2
 - Backport patch to fix crash cause by TpAccount are out of sync.
 - Bump minimum version of tp-glib needed.
