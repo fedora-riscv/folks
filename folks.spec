@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -54,7 +54,7 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static --enable-eds-backend --enable-vala
+%configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool
 make %{?_smp_mflags} V=1
 
 
@@ -88,6 +88,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Apr  5 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-4
+- Enable inspect tool (#810098)
+
 * Tue Apr 03 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-3
 - Rebuild against new tp-glib.
 
