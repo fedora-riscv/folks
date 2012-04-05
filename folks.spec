@@ -33,10 +33,20 @@ Telepathy connection managers and eventually evolution data server,
 Facebook, etc.) to create meta-contacts.
 
 
+%package        tools
+Summary:        Tools for %{name}
+Group:          System Environment/Libraries
+Requires:       %{name} = %{epoch}:%{version}-%{release}
+
+%description    tools
+%{name}-tools contains a database and import tool.
+
+
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-tools = %{epoch}:%{version}-%{release}
 Requires:       telepathy-glib-devel >= %{tp_glib_ver}
 Requires:       glib2-devel
 Requires:       pkgconfig
@@ -72,15 +82,16 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README
-%{_bindir}/%{name}-import
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 
+%files tools
+%{_bindir}/%{name}-import
+%{_bindir}/%{name}-inspect
+
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/folks
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
