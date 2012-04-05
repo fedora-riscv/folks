@@ -22,6 +22,7 @@ BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.1.5
 BuildRequires:  libsocialweb-devel >= 0.25.20
+BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
 
@@ -90,6 +91,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %changelog
 * Thu Apr  5 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-4
 - Enable inspect tool (#810098)
+- Add BR on readline-devel.
 
 * Tue Apr 03 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-3
 - Rebuild against new tp-glib.
