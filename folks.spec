@@ -2,15 +2,14 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.6.8
-Release:        4%{?dist}
+Version:        0.6.9
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://download.gnome.org/sources/folks/0.6/%{name}-%{version}.tar.xz
-Patch0:         folks-use_tp_connection_get_account.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -61,7 +60,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .connection
 
 
 %build
@@ -100,6 +98,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Apr 16 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.9-1
+- Update to 0.6.9.
+- Drop patch that fixed account sync crash. Fixed upstream.
+
 * Thu Apr  5 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.8-4
 - Enable inspect tool (#810098)
 - Add BR on readline-devel.
