@@ -1,9 +1,10 @@
-%define tp_glib_ver	0.15.5
+%define tp_glib_ver	0.17.5
+%define zeitgeist_ver   0.3.14
 
 Name:           folks
 Epoch:          1
-Version:        0.7.0
-Release:        2%{?dist}
+Version:        0.7.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -13,13 +14,14 @@ Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{ver
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
+BuildRequires:  libzeitgeist-devel >= %{zeitgeist_ver}
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.15.2
 BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.1.5
+BuildRequires:  evolution-data-server-devel >= 3.5.3
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
@@ -97,6 +99,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Jun 18 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.1-1
+- Update to 0.7.1.
+- Bump version of eds and tp-glib needed.
+- Add BR on libzeitgeist-devel.
+
 * Wed Jun 13 2012 Cosimo Cecchi <cosimoc@redhat.com> - 1:0.7.0-2
 - Disable libsocialweb backend
 
