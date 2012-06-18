@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.6.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -20,7 +20,6 @@ BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.1.5
-BuildRequires:  libsocialweb-devel >= 0.25.20
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
@@ -63,7 +62,7 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool
+%configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
 make %{?_smp_mflags} V=1
 
 
@@ -98,6 +97,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Mon Jun 18 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.9-2
+- Disable libsocialweb backend.
+
 * Mon Apr 16 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.6.9-1
 - Update to 0.6.9.
 - Drop patch that fixed account sync crash. Fixed upstream.
