@@ -1,0 +1,12 @@
+diff -up folks-0.7.1/backends/eds/lib/edsf-persona-store.vala.uid folks-0.7.1/backends/eds/lib/edsf-persona-store.vala
+--- folks-0.7.1/backends/eds/lib/edsf-persona-store.vala.uid	2012-06-25 23:02:07.766454711 -0400
++++ folks-0.7.1/backends/eds/lib/edsf-persona-store.vala	2012-06-25 23:01:35.317455870 -0400
+@@ -1174,7 +1174,7 @@ public class Edsf.PersonaStore : Folks.P
+           /* Irrelevant */
+           case ContactField.UID: /* identifier */
+           case ContactField.REV: /* revision date */
+-          case ContactField.BOOK_URI: /* parent identifier */
++          case ContactField.BOOK_UID: /* parent identifier */
+           case ContactField.NAME_OR_ORG: /* FULL_NAME or ORG; both handled */
+             return PersonaDetail.INVALID;
+           /* Unsupported */
