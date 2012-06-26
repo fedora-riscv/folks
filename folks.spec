@@ -80,14 +80,22 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %post -p /sbin/ldconfig
 
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+if [ $1 -eq 0 ]; then
+  glib-compile-schemas %{_datadir}/glib-2.0/schemas
+fi
 
+%posttrans
+glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog COPYING README
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
+%{_datadir}/GConf/gsettings/folks.convert
+%{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
 %files tools
 %{_bindir}/%{name}-import
