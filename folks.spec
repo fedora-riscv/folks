@@ -3,17 +3,14 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.7.1
-Release:        2%{?dist}
+Version:        0.7.2.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.xz
-
-# upstream fix
-Patch0:         book-uid.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -24,7 +21,7 @@ BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.5.3
+BuildRequires:  evolution-data-server-devel >= 3.5.4
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
@@ -64,7 +61,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
+
 
 %build
 %configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
@@ -110,6 +107,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Thu Jun 28 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.2.1-1
+- Update to 0.7.2.1.
+- Drop book-uid patch. Fixed upstream.
+- Bump minimum version of eds needed.
+
 * Mon Jun 25 2012 Matthias Clasen <mclasen@redhat.com> - 1:0.7.1-2
 - Update for e-d-s api change
 
