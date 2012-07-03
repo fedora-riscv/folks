@@ -3,7 +3,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.7.2.1
+Version:        0.7.2.2
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -21,7 +21,7 @@ BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.5.4
+BuildRequires:  evolution-data-server-devel >= 3.5.3
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-1.0)
@@ -107,6 +107,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Tue Jul  3 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.2.2-1
+- Update to 0.7.2.2.
+- Update eds version needed.
+
 * Thu Jun 28 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.2.1-1
 - Update to 0.7.2.1.
 - Drop book-uid patch. Fixed upstream.
