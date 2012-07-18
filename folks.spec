@@ -2,7 +2,7 @@
 %define zeitgeist_ver   0.3.14
 
 Name:           folks
-Epoch:          1
+Epoch:          2
 Version:        0.7.2.2
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
@@ -107,6 +107,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Wed Jul 18 2012 Matthias Clasen <mclasen@redhat.com> - 1:0.7.2.2-2
+- Rebuild
+
 * Tue Jul  3 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.2.2-1
 - Update to 0.7.2.2.
 - Update eds version needed.
