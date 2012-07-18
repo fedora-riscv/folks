@@ -2,9 +2,9 @@
 %define zeitgeist_ver   0.3.14
 
 Name:           folks
-Epoch:          2
+Epoch:          1
 Version:        0.7.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
