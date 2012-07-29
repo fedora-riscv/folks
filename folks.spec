@@ -3,8 +3,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.7.2.2
-Release:        3%{?dist}
+Version:        0.7.3
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -107,6 +107,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Sun Jul 29 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.3-1
+- Update to 0.7.3.
+
 * Fri Jul 27 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.7.2.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
