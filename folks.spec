@@ -11,6 +11,10 @@ Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.xz
+Patch0:         001-staticmember.patch
+Patch1:         002-staticmember.patch
+Patch3:         004-staticmember.patch
+Patch4:         005-staticmember.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -61,7 +65,10 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-
+%patch0 -p1 -b .static1
+%patch1 -p1 -b .static2
+%patch3 -p1 -b .static3
+%patch4 -p1 -b .static4
 
 %build
 %configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
@@ -107,8 +114,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
-* Tue Aug 21 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.3-2
+* Mon Aug 27 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.3-2
 - Rebuild for new libcamel.
+- Pull upstream patches to fix build errors caused by accessing static members.
 
 * Sun Jul 29 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.3-1
 - Update to 0.7.3.

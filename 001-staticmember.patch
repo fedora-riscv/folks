@@ -1,0 +1,66 @@
+From aef8ef6b2d7a1733c8ca567a820cbfb5a620d6c0 Mon Sep 17 00:00:00 2001
+From: Travis Reitter <travis.reitter@collabora.co.uk>
+Date: Mon, 13 Aug 2012 16:51:09 +0000
+Subject: Access static class members through class, not instance.
+
+This covers the libsocialweb backend.
+
+Helps: https://bugzilla.gnome.org/show_bug.cgi?id=681420
+---
+diff --git a/backends/libsocialweb/lib/swf-persona-store.vala b/backends/libsocialweb/lib/swf-persona-store.vala
+index e577867..f23f414 100644
+--- a/backends/libsocialweb/lib/swf-persona-store.vala
++++ b/backends/libsocialweb/lib/swf-persona-store.vala
+@@ -124,7 +124,7 @@ public class Swf.PersonaStore : Folks.PersonaStore
+    */
+   public override string[] always_writeable_properties
+     {
+-      get { return this._always_writeable_properties; }
++      get { return Swf.PersonaStore._always_writeable_properties; }
+     }
+ 
+   /*
+diff --git a/backends/libsocialweb/lib/swf-persona.vala b/backends/libsocialweb/lib/swf-persona.vala
+index fd5511e..177b1db 100644
+--- a/backends/libsocialweb/lib/swf-persona.vala
++++ b/backends/libsocialweb/lib/swf-persona.vala
+@@ -59,7 +59,7 @@ public class Swf.Persona : Folks.Persona,
+    */
+   public override string[] linkable_properties
+     {
+-      get { return this._linkable_properties; }
++      get { return Swf.Persona._linkable_properties; }
+     }
+ 
+   /**
+@@ -69,7 +69,7 @@ public class Swf.Persona : Folks.Persona,
+    */
+   public override string[] writeable_properties
+     {
+-      get { return this._writeable_properties; }
++      get { return Swf.Persona._writeable_properties; }
+     }
+ 
+   private LoadableIcon? _avatar = null;
+@@ -260,8 +260,8 @@ public class Swf.Persona : Folks.Persona,
+   public Persona (PersonaStore store, Contact contact)
+     {
+       var id = get_contact_id (contact);
+-      var uid = this.build_uid (BACKEND_NAME, store.id, id);
+-      var iid = this._build_iid (store.id, id);
++      var uid = Folks.Persona.build_uid (BACKEND_NAME, store.id, id);
++      var iid = Swf.Persona._build_iid (store.id, id);
+ 
+       Object (display_id: id,
+               uid: uid,
+@@ -277,7 +277,7 @@ public class Swf.Persona : Folks.Persona,
+           this.uid, this.store.display_name, this.display_id, this);
+ 
+       var facebook_jid =
+-          this._build_facebook_jid (this.store.id, this.display_id);
++          Swf.Persona._build_facebook_jid (this.store.id, this.display_id);
+       if (facebook_jid != null)
+         {
+           try
+--
+cgit v0.9.0.2
