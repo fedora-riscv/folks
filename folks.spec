@@ -1,26 +1,22 @@
-%define tp_glib_ver	0.17.5
+%define tp_glib_ver	0.19.0
 %define zeitgeist_ver   0.3.14
 
 Name:           folks
 Epoch:          1
-Version:        0.7.3
-Release:        2%{?dist}
+Version:        0.7.4.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.xz
-Patch0:         001-staticmember.patch
-Patch1:         002-staticmember.patch
-Patch3:         004-staticmember.patch
-Patch4:         005-staticmember.patch
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  libzeitgeist-devel >= %{zeitgeist_ver}
 BuildRequires:  glib2-devel
-BuildRequires:  vala-devel >= 0.15.2
+BuildRequires:  vala-devel >= 0.17.6
 BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
@@ -65,10 +61,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .static1
-%patch1 -p1 -b .static2
-%patch3 -p1 -b .static3
-%patch4 -p1 -b .static4
+
 
 %build
 %configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
@@ -114,6 +107,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Wed Sep 12 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.4.1-1
+- Update to 0.7.4.1.
+- Bump minimum requirement for tp-glib and vala.
+- Drop staticmember patches. Fixed upstream.
+
 * Mon Aug 27 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.3-2
 - Rebuild for new libcamel.
 - Pull upstream patches to fix build errors caused by accessing static members.
