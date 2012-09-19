@@ -4,7 +4,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.7.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -80,11 +80,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %postun
 /sbin/ldconfig
 if [ $1 -eq 0 ]; then
-  glib-compile-schemas %{_datadir}/glib-2.0/schemas
+  glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
 
 %posttrans
-glib-compile-schemas %{_datadir}/glib-2.0/schemas
+glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog COPYING README
@@ -107,6 +107,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 
 %changelog
+* Wed Sep 19 2012 Kalev Lember <kalevlember@gmail.com> - 1:0.7.4.1-2
+- Silence glib-compile-schemas scriplets
+
 * Wed Sep 12 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.7.4.1-1
 - Update to 0.7.4.1.
 - Bump minimum requirement for tp-glib and vala.
