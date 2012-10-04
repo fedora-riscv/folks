@@ -3,14 +3,14 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.7.4.1
-Release:        2%{?dist}
+Version:        0.8.0
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.xz
+Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.8/%{name}-%{version}.tar.xz
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
@@ -83,8 +83,10 @@ if [ $1 -eq 0 ]; then
   glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
 
+
 %posttrans
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog COPYING README
@@ -107,6 +109,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Thu Oct  4 2012 Brian Pepple <bpepple@fedoraproject.org> - 1:0.8.0-1
+- Update to 0.8.0
+- Update source url.
+
 * Wed Sep 19 2012 Kalev Lember <kalevlember@gmail.com> - 1:0.7.4.1-2
 - Silence glib-compile-schemas scriplets
 
