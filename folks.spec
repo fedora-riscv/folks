@@ -4,7 +4,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.8.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -109,6 +109,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Fri Dec 21 2012 Kalev Lember <kalevlember@gmail.com> - 1:0.8.0-4
+- Rebuild for new libcamel.
+
 * Tue Nov 20 2012 Milan Crha <mcrha@redhat.com> - 1:0.8.0-3
 - Rebuild for new libcamel.
 
