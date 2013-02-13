@@ -4,7 +4,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.8.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -109,6 +109,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.8.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Fri Dec 21 2012 Kalev Lember <kalevlember@gmail.com> - 1:0.8.0-4
 - Rebuild for new libcamel.
 
