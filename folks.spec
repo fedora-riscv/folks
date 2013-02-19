@@ -3,8 +3,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.8.0
-Release:        5%{?dist}
+Version:        0.9.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -109,6 +109,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Feb 19 2013 Richard Hughes <rhughes@redhat.com> - 1:0.9.1-1
+- Update to 0.9.1
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.8.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
