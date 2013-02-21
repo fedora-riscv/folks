@@ -24,7 +24,7 @@ BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.5.3
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
-BuildRequires:  pkgconfig(gee-0.8)
+BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 
 
 %description
