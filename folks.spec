@@ -24,7 +24,7 @@ BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.5.3
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
-BuildRequires:  pkgconfig(gee-1.0)
+BuildRequires:  pkgconfig(gee-0.8)
 
 
 %description
@@ -50,7 +50,7 @@ Requires:	%{name}-tools = %{epoch}:%{version}-%{release}
 Requires:       telepathy-glib-devel >= %{tp_glib_ver}
 Requires:       glib2-devel
 Requires:       pkgconfig
-Requires:	pkgconfig(gee-1.0)
+Requires:	pkgconfig(gee-0.8)
 Requires:	vala-devel >= 0.15.2
 Requires:	vala-tools
 
