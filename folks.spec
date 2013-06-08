@@ -3,8 +3,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.9.1
-Release:        2%{?dist}
+Version:        0.9.2
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -21,7 +21,7 @@ BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.5.3
+BuildRequires:  evolution-data-server-devel >= 3.8.1
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
@@ -109,6 +109,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Sat Jun  8 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.2-1
+- Update to 0.9.2.
+- Bump minimum version of eds needed.
+
 * Tue Apr 30 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.1-2
 - Rebuild against new eds.
 
