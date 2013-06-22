@@ -1,10 +1,12 @@
+%global _changelog_trimtime %(date +%s -d "1 year ago")
+
 %define tp_glib_ver	0.19.0
 %define zeitgeist_ver   0.3.14
 
 Name:           folks
 Epoch:          1
 Version:        0.9.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -109,6 +111,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Sat Jun 22 2013 Matthias Clasen <mclasen@redhat.com> - 1:0.9.2-3
+- Trim %%changelog
+
 * Fri Jun 21 2013 Matthias Clasen <mclasen@redhat.com> - 1:0.9.2-2
 - Install NEWS instead of ChangeLog (saves some space)
 
