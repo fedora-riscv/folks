@@ -4,7 +4,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -89,7 +89,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %files -f %{name}.lang
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS COPYING README NEWS
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
@@ -109,6 +109,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Fri Jun 21 2013 Matthias Clasen <mclasen@redhat.com> - 1:0.9.2-2
+- Install NEWS instead of ChangeLog (saves some space)
+
 * Sat Jun  8 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.2-1
 - Update to 0.9.2.
 - Bump minimum version of eds needed.
