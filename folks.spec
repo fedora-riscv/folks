@@ -1,7 +1,7 @@
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
 %define tp_glib_ver	0.19.0
-%define zeitgeist_ver   0.3.14
+%define zeitgeist_ver   0.9.14
 
 Name:           folks
 Epoch:          1
@@ -113,6 +113,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %changelog
 * Tue Jun 25 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.3-1
 - Update to 0.9.3.
+- Bump minimum version of zeitgeist needed.
 
 * Sat Jun 22 2013 Matthias Clasen <mclasen@redhat.com> - 1:0.9.2-3
 - Trim %%changelog
