@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -66,7 +66,7 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
+%configure --disable-static --disable-fatal-warnings --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
 make %{?_smp_mflags} V=1
 
 
@@ -95,6 +95,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
+%{_libdir}/girepository-1.0/FolksEds-0.6.typelib
+%{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
+%{_libdir}/girepository-1.0/TpLowlevel-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
@@ -107,10 +110,17 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
 %{_datadir}/gir-1.0/Folks-0.6.gir
+%{_datadir}/gir-1.0/FolksEds-0.6.gir
+%{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
+%{_datadir}/gir-1.0/TpLowlevel-0.6.gir
 %{_datadir}/vala/vapi/%{name}*
 
 
 %changelog
+* Wed Jul 10 2013 Kalev Lember <kalevlember@gmail.com> - 1:0.9.3-3
+- Including missing files
+- Disable fatal warnings to fix the build
+
 * Tue Jul 09 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.3-2
 - Rebuild for new libcamel.
 
