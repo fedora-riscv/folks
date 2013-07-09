@@ -16,7 +16,7 @@ Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.8/%{name}-%{ver
 
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
-BuildRequires:  libzeitgeist-devel >= %{zeitgeist_ver}
+BuildRequires:  zeitgeist-devel >= %{zeitgeist_ver}
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.17.6
 BuildRequires:  vala-tools
