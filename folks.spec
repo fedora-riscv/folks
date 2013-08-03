@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -117,6 +117,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.9.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Wed Jul 10 2013 Kalev Lember <kalevlember@gmail.com> - 1:0.9.3-3
 - Including missing files
 - Disable fatal warnings to fix the build
