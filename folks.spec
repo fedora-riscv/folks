@@ -97,7 +97,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
-%{_libdir}/girepository-1.0/TpLowlevel-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
@@ -112,7 +111,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gir-1.0/Folks-0.6.gir
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
 %{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
-%{_datadir}/gir-1.0/TpLowlevel-0.6.gir
 %{_datadir}/vala/vapi/%{name}*
 
 
