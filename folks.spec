@@ -5,7 +5,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.9.4
+Version:        0.9.5
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -115,6 +115,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Aug 27 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.5-1
+- Update to 0.9.5.
+
 * Mon Aug 19 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.4-1
 - Update to 0.9.4.
 - Bump minimum version of eds needed.
