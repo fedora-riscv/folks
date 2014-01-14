@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -118,6 +118,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Jan 14 2014 Milan Crha <mcrha@redhat.com> - 1:0.9.6-3
+- Rebuild against newer evolution-data-server
+
 * Mon Nov 18 2013 Brian Pepple <bpepple@fedoraproject.org> - 1:0.9.6-2
 - Add patch to remove assert that was causing IRC crash. (#1031252)
 
