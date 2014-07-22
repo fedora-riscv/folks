@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -115,6 +115,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Jul 22 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.9.7.1-2
+- Rebuilt for gobject-introspection 1.41.4
+
 * Tue Jun 24 2014 Richard Hughes <rhughes@redhat.com> - 1:0.9.7.1-1
 - Update to 0.9.7.1
 
