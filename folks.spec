@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.9.7.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -95,6 +95,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
+%{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
@@ -109,12 +110,16 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
 %{_datadir}/gir-1.0/Folks-0.6.gir
+%{_datadir}/gir-1.0/FolksDummy-0.6.gir
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
 %{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
 %{_datadir}/vala/vapi/%{name}*
 
 
 %changelog
+* Mon Aug 11 2014 Nils Philippsen <nils@redhat.com> - 1:0.9.7.1-4
+- add missing files to file list
+
 * Thu Jul 31 2014 Milan Crha <mcrha@redhat.com> - 1:0.9.7.1-3
 - Rebuild against newer evolution-data-server
 
