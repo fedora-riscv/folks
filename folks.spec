@@ -39,7 +39,7 @@ Facebook, etc.) to create meta-contacts.
 %package        tools
 Summary:        Tools for %{name}
 Group:          System Environment/Libraries
-Requires:       %{name} = %{epoch}:%{version}-%{release}
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    tools
 %{name}-tools contains a database and import tool.
@@ -48,8 +48,8 @@ Requires:       %{name} = %{epoch}:%{version}-%{release}
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
-Requires:       %{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-tools = %{epoch}:%{version}-%{release}
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:       %{name}-tools%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:       telepathy-glib-devel >= %{tp_glib_ver}
 Requires:       glib2-devel
 Requires:       pkgconfig
@@ -135,6 +135,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 * Fri Sep 12 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.10.0-1
 - Update to 0.10.0
 - Remove lib64 rpaths
+- Tighten subpackage dependencies with the _isa macro
 
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.9.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
