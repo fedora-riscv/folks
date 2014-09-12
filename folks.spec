@@ -50,12 +50,6 @@ Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:       %{name}-tools%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:       telepathy-glib-devel >= %{tp_glib_ver}
-Requires:       glib2-devel
-Requires:       pkgconfig
-Requires:	pkgconfig(gee-0.8)
-Requires:	vala-devel >= 0.15.2
-Requires:	vala-tools
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -128,6 +122,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gir-1.0/FolksDummy-0.6.gir
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
 %{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
+%dir %{_datadir}/vala
+%dir %{_datadir}/vala/vapi
 %{_datadir}/vala/vapi/%{name}*
 
 
@@ -136,6 +132,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 - Update to 0.10.0
 - Remove lib64 rpaths
 - Tighten subpackage dependencies with the _isa macro
+- Drop unneeded -devel subpackage dependencies
 
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.9.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
