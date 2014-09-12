@@ -14,6 +14,7 @@ License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.10/%{name}-%{version}.tar.xz
 
+BuildRequires:  chrpath
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  zeitgeist-devel >= %{zeitgeist_ver}
@@ -73,6 +74,20 @@ make %{?_smp_mflags} V=1
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+
+# Remove lib64 rpaths
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/key-file/key-file.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/ofono/ofono.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/telepathy/telepathy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/bluez/bluez.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/eds/eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/dummy/dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
+chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
+chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
+
 %find_lang %{name}
 
 
@@ -119,6 +134,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %changelog
 * Fri Sep 12 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.10.0-1
 - Update to 0.10.0
+- Remove lib64 rpaths
 
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:0.9.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
