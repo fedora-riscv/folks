@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -128,6 +128,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Sep 23 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.10.0-2
+- Rebuilt for libcamel soname bump
+
 * Fri Sep 12 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.10.0-1
 - Update to 0.10.0
 - Remove lib64 rpaths
