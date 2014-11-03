@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.10.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -17,18 +17,23 @@ Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.10/%{name}-%{ve
 BuildRequires:  chrpath
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
+%if 0%{?fedora}
 BuildRequires:  zeitgeist-devel >= %{zeitgeist_ver}
+%endif
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.17.6
 BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
+%if 0%{?fedora}
 BuildRequires:  evolution-data-server-devel >= 3.9.1
+%else
+BuildRequires:  evolution-data-server-devel
+%endif
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
-
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g.
@@ -61,7 +66,19 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static --disable-fatal-warnings --enable-eds-backend --enable-vala --enable-inspect-tool --disable-libsocialweb-backend
+%configure \
+  --disable-static \
+  --disable-fatal-warnings \
+%if 0%{?fedora}
+  --enable-eds-backend \
+%else
+  --disable-zeitgeist \
+  --disable-eds-backend \
+  --disable-bluez-backend \
+%endif
+  --enable-vala \
+  --enable-inspect-tool \
+  --disable-libsocialweb-backend
 make %{?_smp_mflags} V=1
 
 
@@ -73,11 +90,15 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/key-file/key-file.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/ofono/ofono.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/telepathy/telepathy.so
+%if 0%{?fedora}
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/bluez/bluez.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/eds/eds.so
+%endif
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/dummy/dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
+%if 0%{?fedora}
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
+%endif
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
@@ -105,7 +126,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
+%if 0%{?fedora}
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
+%endif
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
@@ -120,7 +143,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/pkgconfig/folks*.pc
 %{_datadir}/gir-1.0/Folks-0.6.gir
 %{_datadir}/gir-1.0/FolksDummy-0.6.gir
+%if 0%{?fedora}
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
+%endif
 %{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
@@ -128,6 +153,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Mon Nov 03 2014 Richard Hughes <richard@hughsie.com> - 1:0.10.0-3
+- Fix non-Fedora build
+
 * Tue Sep 23 2014 Kalev Lember <kalevlember@gmail.com> - 1:0.10.0-2
 - Rebuilt for libcamel soname bump
 
