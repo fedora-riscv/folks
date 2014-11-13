@@ -26,11 +26,7 @@ BuildRequires:  vala-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
-%if 0%{?fedora}
 BuildRequires:  evolution-data-server-devel >= 3.9.1
-%else
-BuildRequires:  evolution-data-server-devel
-%endif
 BuildRequires:  readline-devel
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
@@ -69,12 +65,12 @@ developing applications that use %{name}.
 %configure \
   --disable-static \
   --disable-fatal-warnings \
-%if 0%{?fedora}
   --enable-eds-backend \
+  --enable-bluez-backend \
+%if 0%{?fedora}
+  --enable-zeitgeist \
 %else
   --disable-zeitgeist \
-  --disable-eds-backend \
-  --disable-bluez-backend \
 %endif
   --enable-vala \
   --enable-inspect-tool \
@@ -90,15 +86,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/key-file/key-file.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/ofono/ofono.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/telepathy/telepathy.so
-%if 0%{?fedora}
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/bluez/bluez.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/eds/eds.so
-%endif
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/dummy/dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
-%if 0%{?fedora}
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
-%endif
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
@@ -126,9 +118,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
-%if 0%{?fedora}
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
-%endif
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
@@ -143,9 +133,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/pkgconfig/folks*.pc
 %{_datadir}/gir-1.0/Folks-0.6.gir
 %{_datadir}/gir-1.0/FolksDummy-0.6.gir
-%if 0%{?fedora}
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
-%endif
 %{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
