@@ -5,8 +5,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.10.0
-Release:        4%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -141,6 +141,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Mon Jan 19 2015 Richard Hughes <rhughes@redhat.com> - 1:0.10.1-1
+- Update to 0.10.1
+
 * Mon Nov 03 2014 Richard Hughes <richard@hughsie.com> - 1:0.10.0-4
 - Use updated e-d-s and bluez in non-Fedora build
 
