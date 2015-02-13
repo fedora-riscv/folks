@@ -5,14 +5,14 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.10.1
+Version:        0.11.0
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.10/%{name}-%{version}.tar.xz
+Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{version}.tar.xz
 
 BuildRequires:  chrpath
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
@@ -141,6 +141,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Fri Feb 13 2015 Richard Hughes <rhughes@redhat.com> - 1:0.11.0-1
+- Update to 0.11.0
+
 * Mon Jan 19 2015 Richard Hughes <rhughes@redhat.com> - 1:0.10.1-1
 - Update to 0.10.1
 
