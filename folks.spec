@@ -83,12 +83,12 @@ make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # Remove lib64 rpaths
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/key-file/key-file.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/ofono/ofono.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/telepathy/telepathy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/bluez/bluez.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/eds/eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/42/backends/dummy/dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/key-file/key-file.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/ofono/ofono.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/telepathy/telepathy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/bluez/bluez.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/eds/eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/dummy/dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
