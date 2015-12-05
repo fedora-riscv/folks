@@ -113,7 +113,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING README NEWS
+%license COPYING
+%doc AUTHORS README NEWS
 %{_libdir}/*.so.*
 %{_libdir}/folks
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
@@ -143,6 +144,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %changelog
 * Sat Dec 05 2015 Kalev Lember <klember@redhat.com> - 1:0.11.2-1
 - Update to 0.11.2
+- Use license macro for COPYING
 
 * Wed Jul 22 2015 Milan Crha <mcrha@redhat.com> - 1:0.11.1-3
 - Rebuild for newer evolution-data-server
