@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -142,6 +142,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Mon Jan 18 2016 Kevin Fenzi <kevin@scrye.com> - 0.11.2-2
+- Rebuild for new libical
+
 * Sat Dec 05 2015 Kalev Lember <klember@redhat.com> - 1:0.11.2-1
 - Update to 0.11.2
 - Use license macro for COPYING
