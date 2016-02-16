@@ -6,7 +6,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -142,6 +142,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Feb 16 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-4
+- Rebuild for newer evolution-data-server
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.11.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
