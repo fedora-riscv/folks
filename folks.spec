@@ -1,12 +1,11 @@
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
 %define tp_glib_ver	0.19.0
-%define zeitgeist_ver   0.9.14
 
 Name:           folks
 Epoch:          1
 Version:        0.11.2
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -17,9 +16,6 @@ Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{ve
 BuildRequires:  chrpath
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
-%if 0%{?fedora}
-BuildRequires:  zeitgeist-devel >= %{zeitgeist_ver}
-%endif
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.17.6
 BuildRequires:  vala-tools
@@ -67,11 +63,7 @@ developing applications that use %{name}.
   --disable-fatal-warnings \
   --enable-eds-backend \
   --enable-bluez-backend \
-%if 0%{?fedora}
-  --enable-zeitgeist \
-%else
   --disable-zeitgeist \
-%endif
   --enable-vala \
   --enable-inspect-tool \
   --disable-libsocialweb-backend
@@ -142,6 +134,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Sun Apr 03 2016 Mathieu Bridon <bochecha@daitauha.fr> - 1:0.11.2-5
+- Drop the Zeitgeist dependency.
+
 * Tue Feb 16 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-4
 - Rebuild for newer evolution-data-server
 
