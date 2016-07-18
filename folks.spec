@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.2
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        GObject contact aggregation library
 
 Group:          System Environment/Libraries
@@ -134,6 +134,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Mon Jul 18 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-7
+- Rebuild for newer evolution-data-server
+
 * Tue Jun 21 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-6
 - Rebuild for newer evolution-data-server
 
