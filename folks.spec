@@ -8,7 +8,6 @@ Version:        0.11.3
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
-Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{version}.tar.xz
@@ -35,7 +34,6 @@ Facebook, etc.) to create meta-contacts.
 
 %package        tools
 Summary:        Tools for %{name}
-Group:          System Environment/Libraries
 Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    tools
@@ -44,7 +42,6 @@ Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:       %{name}-tools%{?_isa} = %{epoch}:%{version}-%{release}
 
@@ -136,6 +133,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %changelog
 * Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 1:0.11.3-1
 - Update to 0.11.3
+- Don't set group tags
 
 * Mon Jul 18 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-7
 - Rebuild for newer evolution-data-server
