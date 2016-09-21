@@ -68,7 +68,7 @@ make %{?_smp_mflags} V=1
 
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # Remove lib64 rpaths
@@ -134,6 +134,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 * Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 1:0.11.3-1
 - Update to 0.11.3
 - Don't set group tags
+- Use make_install macro
 
 * Mon Jul 18 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.2-7
 - Rebuild for newer evolution-data-server
