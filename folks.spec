@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -17,7 +17,7 @@ BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
 BuildRequires:  vala-devel >= 0.17.6
-BuildRequires:  vala-tools
+BuildRequires:  vala
 BuildRequires:  libxml2-devel
 BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
@@ -131,6 +131,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Thu Sep 22 2016 Kalev Lember <klember@redhat.com> - 1:0.11.3-2
+- BR vala instead of obsolete vala-tools subpackage
+
 * Wed Sep 21 2016 Kalev Lember <klember@redhat.com> - 1:0.11.3-1
 - Update to 0.11.3
 - Don't set group tags
