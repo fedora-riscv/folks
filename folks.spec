@@ -16,10 +16,11 @@ BuildRequires:  chrpath
 BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  glib2-devel
+BuildRequires:  gobject-introspection-devel
+BuildRequires:  intltool
 BuildRequires:  vala-devel >= 0.17.6
 BuildRequires:  vala
 BuildRequires:  libxml2-devel
-BuildRequires:  gobject-introspection >= 0.9.12
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.13.90
 BuildRequires:  readline-devel
