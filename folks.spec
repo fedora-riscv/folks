@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -132,6 +132,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Oct 25 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.3-3
+- Rebuild for newer evolution-data-server
+
 * Thu Sep 22 2016 Kalev Lember <klember@redhat.com> - 1:0.11.3-2
 - BR vala instead of obsolete vala-tools subpackage
 
