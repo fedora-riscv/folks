@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -132,6 +132,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Thu Jan 12 2017 Igor Gnatenko <ignatenko@redhat.com> - 1:0.11.3-4
+- Rebuild for readline 7.x
+
 * Tue Oct 25 2016 Milan Crha <mcrha@redhat.com> - 1:0.11.3-3
 - Rebuild for newer evolution-data-server
 
