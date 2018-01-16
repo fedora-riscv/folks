@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -88,6 +88,10 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %find_lang %{name}
 
 
+%check
+VERBOSE=1 make check
+
+
 %post -p /sbin/ldconfig
 
 
@@ -132,6 +136,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Tue Jan 16 2018 Marek Kasik <mkasik@redhat.com> - 1:0.11.4-4
+- Enable unit tests
+- Resolves: #1502676
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.11.4-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
