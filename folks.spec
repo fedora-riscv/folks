@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -136,6 +136,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.11.4-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Wed Feb 07 2018 Kalev Lember <klember@redhat.com> - 1:0.11.4-5
 - Rebuilt for evolution-data-server soname bump
 
