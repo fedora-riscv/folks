@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -136,6 +136,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Mon Nov 12 2018 Milan Crha <mcrha@redhat.com> - 1:0.11.4-9
+- Rebuilt for evolution-data-server soname bump
+
 * Tue Jul 31 2018 Florian Weimer <fweimer@redhat.com> - 1:0.11.4-8
 - Rebuild with fixed binutils
 
