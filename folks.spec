@@ -1,6 +1,6 @@
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
-%define tp_glib_ver	0.19.0
+%define tp_glib_ver 0.19.0
 
 Name:           folks
 Epoch:          1
