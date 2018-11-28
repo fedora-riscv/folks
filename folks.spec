@@ -5,7 +5,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -13,8 +13,7 @@ URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{version}.tar.xz
 
 BuildRequires:  chrpath
-BuildRequires:  telepathy-glib-devel >= %{tp_glib_ver}
-BuildRequires:  telepathy-glib-vala
+BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
 BuildRequires:  intltool
@@ -61,6 +60,7 @@ developing applications that use %{name}.
   --disable-fatal-warnings \
   --enable-eds-backend \
   --enable-bluez-backend \
+  --disable-telepathy-backend \
   --disable-zeitgeist \
   --enable-vala \
   --enable-inspect-tool \
@@ -75,13 +75,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 # Remove lib64 rpaths
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/key-file/key-file.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/ofono/ofono.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/telepathy/telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/bluez/bluez.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/eds/eds.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/dummy/dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 
@@ -114,7 +112,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
-%{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
@@ -129,13 +126,15 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gir-1.0/Folks-0.6.gir
 %{_datadir}/gir-1.0/FolksDummy-0.6.gir
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
-%{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
 %{_datadir}/vala/vapi/%{name}*
 
 
 %changelog
+* Wed Nov 28 2018 Debarshi Ray <rishi@fedoraproject.org> - 1:0.11.4-10
+- Disable Telepathy backend (RH #1654208)
+
 * Mon Nov 12 2018 Milan Crha <mcrha@redhat.com> - 1:0.11.4-9
 - Rebuilt for evolution-data-server soname bump
 
