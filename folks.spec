@@ -90,20 +90,6 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 VERBOSE=1 make check
 
 
-%post -p /sbin/ldconfig
-
-
-%postun
-/sbin/ldconfig
-if [ $1 -eq 0 ]; then
-  glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
-fi
-
-
-%posttrans
-glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
-
-
 %files -f %{name}.lang
 %license COPYING
 %doc AUTHORS README NEWS
