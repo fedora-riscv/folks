@@ -5,13 +5,14 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{version}.tar.xz
 
+BuildRequires:  /usr/bin/dbus-daemon
 BuildRequires:  chrpath
 BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  glib2-devel
@@ -118,6 +119,10 @@ VERBOSE=1 make check
 
 
 %changelog
+* Mon Jan 07 2019 Milan Crha <mcrha@redhat.com> - 1:0.11.4-11
+- Rebuilt for evolution-data-server soname bump
+- Add /usr/bin/dbus-daemon into the BuildRequires (for tests)
+
 * Wed Nov 28 2018 Debarshi Ray <rishi@fedoraproject.org> - 1:0.11.4-10
 - Disable Telepathy backend (RH #1654208)
 
