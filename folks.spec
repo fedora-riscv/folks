@@ -1,11 +1,9 @@
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
-%define tp_glib_ver 0.19.0
-
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -24,6 +22,8 @@ BuildRequires:  libxml2-devel
 BuildRequires:  GConf2-devel
 BuildRequires:  evolution-data-server-devel >= 3.13.90
 BuildRequires:  readline-devel
+BuildRequires:  telepathy-glib-devel
+BuildRequires:  telepathy-glib-vala
 ## BuildRequires: tracker-devel >= 0.10
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 
@@ -31,6 +31,14 @@ BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 libfolks is a library that aggregates people from multiple sources (e.g.
 Telepathy connection managers and eventually evolution data server,
 Facebook, etc.) to create meta-contacts.
+
+
+%package        telepathy
+Summary:        Folks telepathy backend
+Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
+
+%description    telepathy
+%{name}-telepathy contains the folks telepathy backend.
 
 
 %package        tools
@@ -61,7 +69,7 @@ developing applications that use %{name}.
   --disable-fatal-warnings \
   --enable-eds-backend \
   --enable-bluez-backend \
-  --disable-telepathy-backend \
+  --enable-telepathy-backend \
   --disable-zeitgeist \
   --enable-vala \
   --enable-inspect-tool \
@@ -79,8 +87,10 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/ofono/ofono.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/bluez/bluez.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/eds/eds.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/dummy/dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/telepathy/telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 
@@ -94,13 +104,27 @@ VERBOSE=1 make check
 %files -f %{name}.lang
 %license COPYING
 %doc AUTHORS README NEWS
-%{_libdir}/*.so.*
-%{_libdir}/folks
+%{_libdir}/libfolks-dummy.so.25*
+%{_libdir}/libfolks-eds.so.25*
+%{_libdir}/libfolks.so.25*
+%dir %{_libdir}/folks
+%dir %{_libdir}/folks/43
+%dir %{_libdir}/folks/43/backends
+%{_libdir}/folks/43/backends/bluez/
+%{_libdir}/folks/43/backends/dummy/
+%{_libdir}/folks/43/backends/eds/
+%{_libdir}/folks/43/backends/key-file/
+%{_libdir}/folks/43/backends/ofono/
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
+
+%files telepathy
+%{_libdir}/libfolks-telepathy.so.25*
+%{_libdir}/folks/43/backends/telepathy
+%{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 
 %files tools
 %{_bindir}/%{name}-import
@@ -113,12 +137,16 @@ VERBOSE=1 make check
 %{_datadir}/gir-1.0/Folks-0.6.gir
 %{_datadir}/gir-1.0/FolksDummy-0.6.gir
 %{_datadir}/gir-1.0/FolksEds-0.6.gir
+%{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
 %{_datadir}/vala/vapi/%{name}*
 
 
 %changelog
+* Wed Jan 16 2019 Pete Walter <pwalter@fedoraproject.org> - 1:0.11.4-12
+- Enable telepathy backend again and split it out to folks-telepathy subpackage
+
 * Mon Jan 07 2019 Milan Crha <mcrha@redhat.com> - 1:0.11.4-11
 - Rebuilt for evolution-data-server soname bump
 - Add /usr/bin/dbus-daemon into the BuildRequires (for tests)
