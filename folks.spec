@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -144,6 +144,9 @@ VERBOSE=1 make check
 
 
 %changelog
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.11.4-13
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Jan 16 2019 Pete Walter <pwalter@fedoraproject.org> - 1:0.11.4-12
 - Enable telepathy backend again and split it out to folks-telepathy subpackage
 
