@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.11.4
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -144,6 +144,9 @@ VERBOSE=1 make check
 
 
 %changelog
+* Tue Feb 19 2019 Kalev Lember <klember@redhat.com> - 1:0.11.4-15
+- Rebuilt against fixed atk (#1626575)
+
 * Sun Feb 17 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1:0.11.4-14
 - Rebuild for readline 8.0
 
