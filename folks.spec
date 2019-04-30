@@ -2,36 +2,39 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.11.4
-Release:        15%{?dist}
+Version:        0.12.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.11/%{name}-%{version}.tar.xz
+Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.12/%{name}-%{version}.tar.xz
 
-BuildRequires:  /usr/bin/dbus-daemon
+BuildRequires:  gcc
+BuildRequires:  meson
+BuildRequires:  gettext
 BuildRequires:  chrpath
 BuildRequires:  pkgconfig(dbus-glib-1)
+BuildRequires:  evolution-data-server-devel >= 3.13.90
+BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
-BuildRequires:  intltool
-BuildRequires:  vala-devel >= 0.17.6
-BuildRequires:  vala
 BuildRequires:  libxml2-devel
-BuildRequires:  GConf2-devel
-BuildRequires:  evolution-data-server-devel >= 3.13.90
+# python2 required to build: tests/tools/manager-file.py.
+# Marked for porting to python3 in file at upstream source: telepathy-glib.
+BuildRequires:  python2
+BuildRequires:  python3-dbusmock
+BuildRequires:  python3-devel
 BuildRequires:  readline-devel
 BuildRequires:  telepathy-glib-devel
 BuildRequires:  telepathy-glib-vala
-## BuildRequires: tracker-devel >= 0.10
-BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
+BuildRequires:  vala
+BuildRequires:  vala-devel >= 0.17.6
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g.
 Telepathy connection managers and eventually evolution data server,
 Facebook, etc.) to create meta-contacts.
-
 
 %package        telepathy
 Summary:        Folks telepathy backend
@@ -40,14 +43,12 @@ Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 %description    telepathy
 %{name}-telepathy contains the folks telepathy backend.
 
-
 %package        tools
 Summary:        Tools for %{name}
 Requires:       %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    tools
 %{name}-tools contains a database and import tool.
-
 
 %package        devel
 Summary:        Development files for %{name}
@@ -58,36 +59,25 @@ Requires:       %{name}-tools%{?_isa} = %{epoch}:%{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %prep
-%setup -q
-
+%autosetup
 
 %build
-%configure \
-  --disable-static \
-  --disable-fatal-warnings \
-  --enable-eds-backend \
-  --enable-bluez-backend \
-  --enable-telepathy-backend \
-  --disable-zeitgeist \
-  --enable-vala \
-  --enable-inspect-tool \
-  --disable-libsocialweb-backend
-make %{?_smp_mflags} V=1
-
+%meson
+%meson_build
 
 %install
-%make_install
+%meson_install
+
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # Remove lib64 rpaths
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/key-file/key-file.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/ofono/ofono.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/bluez/bluez.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/eds/eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/dummy/dummy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/43/backends/telepathy/telepathy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/key-file/key-file.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/ofono/ofono.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/bluez/bluez.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/eds/eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/dummy/dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/telepathy/telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
@@ -96,34 +86,31 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 
 %find_lang %{name}
 
-
 %check
-VERBOSE=1 make check
-
+%meson_test
 
 %files -f %{name}.lang
 %license COPYING
-%doc AUTHORS README NEWS
+%doc AUTHORS NEWS
 %{_libdir}/libfolks-dummy.so.25*
 %{_libdir}/libfolks-eds.so.25*
 %{_libdir}/libfolks.so.25*
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/43
-%dir %{_libdir}/folks/43/backends
-%{_libdir}/folks/43/backends/bluez/
-%{_libdir}/folks/43/backends/dummy/
-%{_libdir}/folks/43/backends/eds/
-%{_libdir}/folks/43/backends/key-file/
-%{_libdir}/folks/43/backends/ofono/
+%dir %{_libdir}/folks/44
+%dir %{_libdir}/folks/44/backends
+%{_libdir}/folks/44/backends/bluez/
+%{_libdir}/folks/44/backends/dummy/
+%{_libdir}/folks/44/backends/eds/
+%{_libdir}/folks/44/backends/key-file/
+%{_libdir}/folks/44/backends/ofono/
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
-%{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
 %files telepathy
 %{_libdir}/libfolks-telepathy.so.25*
-%{_libdir}/folks/43/backends/telepathy
+%{_libdir}/folks/44/backends/telepathy
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 
 %files tools
@@ -142,8 +129,12 @@ VERBOSE=1 make check
 %dir %{_datadir}/vala/vapi
 %{_datadir}/vala/vapi/%{name}*
 
-
 %changelog
+* Tue Apr 30 2019 Phil Wyett <philwyett@kathenas.org> - 1:0.12.1-1
+- Update to 0.12.1
+- Convert to meson build
+- Fix and cleanup dependencies
+
 * Tue Feb 19 2019 Kalev Lember <klember@redhat.com> - 1:0.11.4-15
 - Rebuilt against fixed atk (#1626575)
 
