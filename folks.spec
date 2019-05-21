@@ -3,12 +3,13 @@
 Name:           folks
 Epoch:          1
 Version:        0.12.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.12/%{name}-%{version}.tar.xz
+Patch01:        folks-eds-libebook-api-changes.patch
 
 BuildRequires:  gcc
 BuildRequires:  meson
@@ -60,7 +61,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 %meson
@@ -130,6 +131,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Tue May 21 2019 Milan Crha <mcrha@redhat.com> - 1:0.12.1-2
+- Add patch to adapt to evolution-data-server's libebook API changes
+
 * Tue Apr 30 2019 Phil Wyett <philwyett@kathenas.org> - 1:0.12.1-1
 - Update to 0.12.1
 - Convert to meson build
