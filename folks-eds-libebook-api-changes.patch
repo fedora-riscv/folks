@@ -1,22 +1,7 @@
-From 69baa2e62665f4163ff7367f2a8b12655350abdf Mon Sep 17 00:00:00 2001
-From: Milan Crha <mcrha@redhat.com>
-Date: Fri, 17 May 2019 09:43:01 +0200
-Subject: [PATCH] eds: Adapt to libebook API changes
-
-Closes https://gitlab.gnome.org/GNOME/folks/merge_requests/10
----
- backends/eds/lib/edsf-persona-store.vala   | 6 +++---
- meson.build                                | 2 +-
- tests/eds/helper-create-many-contacts.vala | 2 +-
- tests/eds/helper-delete-contacts.vala      | 2 +-
- tests/lib/eds/backend.vala                 | 6 +++---
- 5 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/backends/eds/lib/edsf-persona-store.vala b/backends/eds/lib/edsf-persona-store.vala
-index 33a10f2b..2311277b 100644
---- a/backends/eds/lib/edsf-persona-store.vala
-+++ b/backends/eds/lib/edsf-persona-store.vala
-@@ -610,7 +610,7 @@ public class Edsf.PersonaStore : Folks.PersonaStore
+diff -up folks-0.12.1/backends/eds/lib/edsf-persona-store.vala.eds-libebook-api folks-0.12.1/backends/eds/lib/edsf-persona-store.vala
+--- folks-0.12.1/backends/eds/lib/edsf-persona-store.vala.eds-libebook-api	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/backends/eds/lib/edsf-persona-store.vala	2019-05-21 15:13:30.384790173 +0200
+@@ -610,7 +610,7 @@ public class Edsf.PersonaStore : Folks.P
            /* _addressbook is guaranteed to be non-null before we ensure that
             * prepare() has already been called. */
            yield ((!) this._addressbook).remove_contact (
@@ -25,7 +10,7 @@ index 33a10f2b..2311277b 100644
          }
        catch (GLib.Error e)
          {
-@@ -1258,7 +1258,7 @@ public class Edsf.PersonaStore : Folks.PersonaStore
+@@ -1258,7 +1258,7 @@ public class Edsf.PersonaStore : Folks.P
  
            /* Commit the new contact. _addressbook is asserted as being non-null
             * above. */
@@ -34,7 +19,7 @@ index 33a10f2b..2311277b 100644
                out added_uid);
  
            debug ("Finished sending new contact to EDS; received UID %s.",
-@@ -1377,7 +1377,7 @@ public class Edsf.PersonaStore : Folks.PersonaStore
+@@ -1377,7 +1377,7 @@ public class Edsf.PersonaStore : Folks.P
  
            /* Commit the modification. _addressbook is asserted as being non-null
             * above. */
@@ -43,11 +28,10 @@ index 33a10f2b..2311277b 100644
  
            timeout_id = Timeout.add_seconds (PersonaStore._property_change_timeout, () =>
              {
-diff --git a/meson.build b/meson.build
-index 1fd2e348..a42166fe 100644
---- a/meson.build
-+++ b/meson.build
-@@ -65,7 +65,7 @@ inspect_tool_enabled = get_option('inspect_tool')
+diff -up folks-0.12.1/meson.build.eds-libebook-api folks-0.12.1/meson.build
+--- folks-0.12.1/meson.build.eds-libebook-api	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/meson.build	2019-05-21 15:13:30.384790173 +0200
+@@ -67,7 +67,7 @@ inspect_tool_enabled = get_option('inspe
  # Dependencies
  #-------------------------------------------------
  min_glib_version = '2.44'
@@ -56,10 +40,9 @@ index 1fd2e348..a42166fe 100644
  
  valac = meson.get_compiler('vala')
  cc = meson.get_compiler('c')
-diff --git a/tests/eds/helper-create-many-contacts.vala b/tests/eds/helper-create-many-contacts.vala
-index b5d2ab4b..632c1cd6 100644
---- a/tests/eds/helper-create-many-contacts.vala
-+++ b/tests/eds/helper-create-many-contacts.vala
+diff -up folks-0.12.1/tests/eds/helper-create-many-contacts.vala.eds-libebook-api folks-0.12.1/tests/eds/helper-create-many-contacts.vala
+--- folks-0.12.1/tests/eds/helper-create-many-contacts.vala.eds-libebook-api	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/tests/eds/helper-create-many-contacts.vala	2019-05-21 15:13:30.384790173 +0200
 @@ -107,7 +107,7 @@ public class Main
        SList<string> uids;
        try
@@ -69,10 +52,9 @@ index b5d2ab4b..632c1cd6 100644
          }
        catch (Error e)
          {
-diff --git a/tests/eds/helper-delete-contacts.vala b/tests/eds/helper-delete-contacts.vala
-index 6853610a..74b84f21 100644
---- a/tests/eds/helper-delete-contacts.vala
-+++ b/tests/eds/helper-delete-contacts.vala
+diff -up folks-0.12.1/tests/eds/helper-delete-contacts.vala.eds-libebook-api folks-0.12.1/tests/eds/helper-delete-contacts.vala
+--- folks-0.12.1/tests/eds/helper-delete-contacts.vala.eds-libebook-api	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/tests/eds/helper-delete-contacts.vala	2019-05-21 15:13:30.384790173 +0200
 @@ -41,7 +41,7 @@ public class Main
        SList<string> uids;
        book_client.get_contacts_uids_sync (
@@ -82,10 +64,9 @@ index 6853610a..74b84f21 100644
      }
  
    private static string _uid = "";
-diff --git a/tests/lib/eds/backend.vala b/tests/lib/eds/backend.vala
-index 22923ed5..e9fc587c 100644
---- a/tests/lib/eds/backend.vala
-+++ b/tests/lib/eds/backend.vala
+diff -up folks-0.12.1/tests/lib/eds/backend.vala.eds-libebook-api folks-0.12.1/tests/lib/eds/backend.vala
+--- folks-0.12.1/tests/lib/eds/backend.vala.eds-libebook-api	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/tests/lib/eds/backend.vala	2019-05-21 15:13:30.384790173 +0200
 @@ -71,7 +71,7 @@ public class EdsTest.Backend
          {
            yield this._addressbook.get_contact (uid, null, out contact);
@@ -113,6 +94,14 @@ index 22923ed5..e9fc587c 100644
  
            foreach (unowned string uid in uids)
              this._e_contacts += uid;
--- 
-2.18.1
-
+diff -up folks-0.12.1/tests/lib/eds/test-case.vala.eds-libebook-api folks-0.12.1/tests/lib/eds/test-case.vala
+--- folks-0.12.1/tests/lib/eds/test-case.vala.eds-libebook-api	2019-05-21 15:13:42.605790004 +0200
++++ folks-0.12.1/tests/lib/eds/test-case.vala	2019-05-21 15:14:03.266789718 +0200
+@@ -123,6 +123,7 @@ public class EdsTest.TestCase : Folks.Te
+         };
+       const string address_book_services[] =
+         {
++          "org.gnome.evolution.dataserver.AddressBook10",
+           "org.gnome.evolution.dataserver.AddressBook9",
+           "org.gnome.evolution.dataserver.AddressBook8",
+           "org.gnome.evolution.dataserver.AddressBook7",

@@ -16,7 +16,7 @@ BuildRequires:  meson
 BuildRequires:  gettext
 BuildRequires:  chrpath
 BuildRequires:  pkgconfig(dbus-glib-1)
-BuildRequires:  evolution-data-server-devel >= 3.13.90
+BuildRequires:  evolution-data-server-devel >= 3.33.2
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
