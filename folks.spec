@@ -32,7 +32,6 @@ BuildRequires:  readline-devel
 BuildRequires:  telepathy-glib-devel
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  vala
-BuildRequires:  vala-devel >= 0.17.6
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g.
