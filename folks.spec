@@ -1,5 +1,7 @@
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
+%global folks_module_version 45
+
 Name:           folks
 Epoch:          1
 Version:        0.13.1
@@ -74,12 +76,12 @@ developing applications that use %{name}.
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # Remove lib64 rpaths
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/key-file/key-file.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/ofono/ofono.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/bluez/bluez.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/eds/eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/dummy/dummy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/44/backends/telepathy/telepathy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/key-file/key-file.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/ofono/ofono.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/bluez/bluez.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/eds/eds.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/dummy/dummy.so
+chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/telepathy/telepathy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
 chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
@@ -98,13 +100,13 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_libdir}/libfolks-eds.so.25*
 %{_libdir}/libfolks.so.25*
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/44
-%dir %{_libdir}/folks/44/backends
-%{_libdir}/folks/44/backends/bluez/
-%{_libdir}/folks/44/backends/dummy/
-%{_libdir}/folks/44/backends/eds/
-%{_libdir}/folks/44/backends/key-file/
-%{_libdir}/folks/44/backends/ofono/
+%dir %{_libdir}/folks/%{folks_module_version}
+%dir %{_libdir}/folks/%{folks_module_version}/backends
+%{_libdir}/folks/%{folks_module_version}/backends/bluez/
+%{_libdir}/folks/%{folks_module_version}/backends/dummy/
+%{_libdir}/folks/%{folks_module_version}/backends/eds/
+%{_libdir}/folks/%{folks_module_version}/backends/key-file/
+%{_libdir}/folks/%{folks_module_version}/backends/ofono/
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
@@ -112,7 +114,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 
 %files telepathy
 %{_libdir}/libfolks-telepathy.so.25*
-%{_libdir}/folks/44/backends/telepathy
+%{_libdir}/folks/%{folks_module_version}/backends/telepathy
 %{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
 
 %files tools
