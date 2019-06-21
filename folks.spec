@@ -2,14 +2,13 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.12.1
-Release:        2%{?dist}
+Version:        0.13.1
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.12/%{name}-%{version}.tar.xz
-Patch01:        folks-eds-libebook-api-changes.patch
+Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.13/%{name}-%{version}.tar.xz
 # Bump EDS test timeout to 60 secs so add-contacts-stress-test
 # doesn't time out on some arches
 Patch02:        folks-0.12.1-test_timeout.patch
@@ -134,6 +133,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Fri Jun 21 2019 Kalev Lember <klember@redhat.com> - 1:0.13.1-1
+- Update to 0.13.1
+
 * Thu May 23 2019 Adam Williamson <awilliam@redhat.com> - 1:0.12.1-2
 - Add patch to extend test timeout to fix build fails
 
