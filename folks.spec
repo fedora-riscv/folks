@@ -1,5 +1,3 @@
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 %global folks_module_version 45
 
 Name:           folks
