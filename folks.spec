@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.13.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -132,6 +132,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.13.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Fri Jun 21 2019 Kalev Lember <klember@redhat.com> - 1:0.13.1-1
 - Update to 0.13.1
 
