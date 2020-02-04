@@ -2,16 +2,17 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.13.1
-Release:        3%{?dist}
+Version:        0.13.2
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.13/%{name}-%{version}.tar.xz
+
 # Bump EDS test timeout to 60 secs so add-contacts-stress-test
 # doesn't time out on some arches
-Patch02:        folks-0.12.1-test_timeout.patch
+Patch02:        folks-eds-test-timeout.patch
 
 BuildRequires:  gcc
 BuildRequires:  meson
@@ -108,6 +109,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_libdir}/girepository-1.0/Folks-0.6.typelib
 %{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
 %{_libdir}/girepository-1.0/FolksEds-0.6.typelib
+%{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
 %files telepathy
@@ -132,6 +134,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Tue Feb 04 2020 Kalev Lember <klember@redhat.com> - 1:0.13.2-1
+- Update to 0.13.2
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.13.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
