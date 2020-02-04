@@ -23,9 +23,6 @@ BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
 BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
 BuildRequires:  libxml2-devel
-# python2 required to build: tests/tools/manager-file.py.
-# Marked for porting to python3 in file at upstream source: telepathy-glib.
-BuildRequires:  python2
 BuildRequires:  python3-dbusmock
 BuildRequires:  python3-devel
 BuildRequires:  readline-devel
@@ -121,6 +118,7 @@ developing applications that use %{name}.
 * Tue Feb 04 2020 Kalev Lember <klember@redhat.com> - 1:0.13.2-1
 - Update to 0.13.2
 - Clean up some more cruft left over from autotools build
+- No longer require python2 for building
 
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.13.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
