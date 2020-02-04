@@ -17,7 +17,6 @@ Patch02:        folks-eds-test-timeout.patch
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  gettext
-BuildRequires:  chrpath
 BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  evolution-data-server-devel >= 3.33.2
 BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
@@ -72,21 +71,6 @@ developing applications that use %{name}.
 %install
 %meson_install
 
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-
-# Remove lib64 rpaths
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/key-file/key-file.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/ofono/ofono.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/bluez/bluez.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/eds/eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/dummy/dummy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/folks/%{folks_module_version}/backends/telepathy/telepathy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-dummy.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-eds.so
-chrpath --delete $RPM_BUILD_ROOT%{_libdir}/libfolks-telepathy.so
-chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-import
-chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
-
 %find_lang %{name}
 
 %check
@@ -136,6 +120,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/folks-inspect
 %changelog
 * Tue Feb 04 2020 Kalev Lember <klember@redhat.com> - 1:0.13.2-1
 - Update to 0.13.2
+- Clean up some more cruft left over from autotools build
 
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.13.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
