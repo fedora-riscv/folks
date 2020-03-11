@@ -1,14 +1,14 @@
-%global folks_module_version 45
+%global folks_module_version 46
 
 Name:           folks
 Epoch:          1
-Version:        0.13.2
+Version:        0.14.0
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.13/%{name}-%{version}.tar.xz
+Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.14/%{name}-%{version}.tar.xz
 
 # Bump EDS test timeout to 60 secs so add-contacts-stress-test
 # doesn't time out on some arches
@@ -115,6 +115,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Wed Mar 11 2020 Kalev Lember <klember@redhat.com> - 1:0.14.0-1
+- Update to 0.14.0
+
 * Tue Feb 04 2020 Kalev Lember <klember@redhat.com> - 1:0.13.2-1
 - Update to 0.13.2
 - Clean up some more cruft left over from autotools build
