@@ -7,8 +7,8 @@ Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
-URL:            http://telepathy.freedesktop.org/wiki/Folks
-Source0:        http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.14/%{name}-%{version}.tar.xz
+URL:            https://wiki.gnome.org/Projects/Folks
+Source0:        https://download.gnome.org/sources/folks/0.14/folks-%{version}.tar.xz
 
 # Bump EDS test timeout to 60 secs so add-contacts-stress-test
 # doesn't time out on some arches
@@ -117,6 +117,7 @@ developing applications that use %{name}.
 %changelog
 * Wed Mar 11 2020 Kalev Lember <klember@redhat.com> - 1:0.14.0-1
 - Update to 0.14.0
+- Update download URLs
 
 * Tue Feb 04 2020 Kalev Lember <klember@redhat.com> - 1:0.13.2-1
 - Update to 0.13.2
