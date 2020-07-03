@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.14.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -115,6 +115,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Fri Jul 03 2020 Milan Crha <mcrha@redhat.com> - 1:0.14.0-2
+- Rebuilt for evolution-data-server soname version bump
+
 * Wed Mar 11 2020 Kalev Lember <klember@redhat.com> - 1:0.14.0-1
 - Update to 0.14.0
 - Update download URLs
