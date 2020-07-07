@@ -14,6 +14,9 @@ Source0:        https://download.gnome.org/sources/folks/0.14/folks-%{version}.t
 # doesn't time out on some arches
 Patch02:        folks-eds-test-timeout.patch
 
+# https://gitlab.gnome.org/GNOME/folks/-/merge_requests/40
+Patch03:        folks-eds-add-persona-test-libphonenumber.patch
+
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  gettext
@@ -115,7 +118,7 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
-* Fri Jul 03 2020 Milan Crha <mcrha@redhat.com> - 1:0.14.0-2
+* Tue Jul 07 2020 Milan Crha <mcrha@redhat.com> - 1:0.14.0-2
 - Rebuilt for evolution-data-server soname version bump
 
 * Wed Mar 11 2020 Kalev Lember <klember@redhat.com> - 1:0.14.0-1
