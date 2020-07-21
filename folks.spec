@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.14.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -65,6 +65,9 @@ developing applications that use %{name}.
 %autosetup -p1
 
 %build
+# This package uses gobject introspection and is thus currently incompatible with LTO
+%define _lto_cflags %{nil}
+
 %meson
 %meson_build
 
@@ -118,6 +121,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Mon Jul 20 2020 Jeff Law <law@redhat.com> - 1:0.14.0-3
+- Disable LTO
+
 * Tue Jul 07 2020 Milan Crha <mcrha@redhat.com> - 1:0.14.0-2
 - Rebuilt for evolution-data-server soname version bump
 
