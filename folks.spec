@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.14.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -121,6 +121,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Fri Feb 12 2021 Milan Crha <mcrha@redhat.com> - 1:0.14.0-7
+- Rebuilt for evolution-data-server soname version bump
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.14.0-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
