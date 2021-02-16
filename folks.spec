@@ -29,6 +29,9 @@ BuildRequires:  readline-devel
 BuildRequires:  telepathy-glib-devel
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  vala
+# for temporary ABI compat
+BuildRequires:  folks
+BuildRequires:  folks-telepathy
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g.
@@ -71,6 +74,9 @@ developing applications that use %{name}.
 %install
 %meson_install
 
+# for temporary ABI compat
+cp -a %{_libdir}/libfolks*.so.25* $RPM_BUILD_ROOT%{_libdir}/
+
 %find_lang %{name}
 
 %check
@@ -82,6 +88,10 @@ developing applications that use %{name}.
 %{_libdir}/libfolks-dummy.so.26*
 %{_libdir}/libfolks-eds.so.26*
 %{_libdir}/libfolks.so.26*
+# for temporary ABI compat
+%{_libdir}/libfolks-dummy.so.25*
+%{_libdir}/libfolks-eds.so.25*
+%{_libdir}/libfolks.so.25*
 %dir %{_libdir}/folks
 %dir %{_libdir}/folks/%{folks_module_version}
 %dir %{_libdir}/folks/%{folks_module_version}/backends
@@ -98,6 +108,8 @@ developing applications that use %{name}.
 
 %files telepathy
 %{_libdir}/libfolks-telepathy.so.26*
+# for temporary ABI compat
+%{_libdir}/libfolks-telepathy.so.25*
 %{_libdir}/folks/%{folks_module_version}/backends/telepathy
 %{_libdir}/girepository-1.0/FolksTelepathy-0.7.typelib
 
