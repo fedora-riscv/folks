@@ -1,21 +1,18 @@
-%global folks_module_version 46
+%global folks_module_version 26
 
 Name:           folks
 Epoch:          1
-Version:        0.14.0
-Release:        7%{?dist}
+Version:        0.15.2
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
 URL:            https://wiki.gnome.org/Projects/Folks
-Source0:        https://download.gnome.org/sources/folks/0.14/folks-%{version}.tar.xz
+Source0:        https://download.gnome.org/sources/folks/0.15/folks-%{version}.tar.xz
 
 # Bump EDS test timeout to 60 secs so add-contacts-stress-test
 # doesn't time out on some arches
 Patch02:        folks-eds-test-timeout.patch
-
-# https://gitlab.gnome.org/GNOME/folks/-/merge_requests/40
-Patch03:        folks-eds-add-persona-test-libphonenumber.patch
 
 BuildRequires:  gcc
 BuildRequires:  meson
@@ -82,9 +79,9 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %license COPYING
 %doc AUTHORS NEWS
-%{_libdir}/libfolks-dummy.so.25*
-%{_libdir}/libfolks-eds.so.25*
-%{_libdir}/libfolks.so.25*
+%{_libdir}/libfolks-dummy.so.26*
+%{_libdir}/libfolks-eds.so.26*
+%{_libdir}/libfolks.so.26*
 %dir %{_libdir}/folks
 %dir %{_libdir}/folks/%{folks_module_version}
 %dir %{_libdir}/folks/%{folks_module_version}/backends
@@ -93,16 +90,16 @@ developing applications that use %{name}.
 %{_libdir}/folks/%{folks_module_version}/backends/eds/
 %{_libdir}/folks/%{folks_module_version}/backends/key-file/
 %{_libdir}/folks/%{folks_module_version}/backends/ofono/
-%{_libdir}/girepository-1.0/Folks-0.6.typelib
-%{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
-%{_libdir}/girepository-1.0/FolksEds-0.6.typelib
+%{_libdir}/girepository-1.0/Folks-0.7.typelib
+%{_libdir}/girepository-1.0/FolksDummy-0.7.typelib
+%{_libdir}/girepository-1.0/FolksEds-0.7.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
 
 %files telepathy
-%{_libdir}/libfolks-telepathy.so.25*
+%{_libdir}/libfolks-telepathy.so.26*
 %{_libdir}/folks/%{folks_module_version}/backends/telepathy
-%{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
+%{_libdir}/girepository-1.0/FolksTelepathy-0.7.typelib
 
 %files tools
 %{_bindir}/%{name}-import
@@ -112,15 +109,18 @@ developing applications that use %{name}.
 %{_includedir}/folks
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/folks*.pc
-%{_datadir}/gir-1.0/Folks-0.6.gir
-%{_datadir}/gir-1.0/FolksDummy-0.6.gir
-%{_datadir}/gir-1.0/FolksEds-0.6.gir
-%{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
+%{_datadir}/gir-1.0/Folks-0.7.gir
+%{_datadir}/gir-1.0/FolksDummy-0.7.gir
+%{_datadir}/gir-1.0/FolksEds-0.7.gir
+%{_datadir}/gir-1.0/FolksTelepathy-0.7.gir
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Tue Feb 16 2021 Kalev Lember <klember@redhat.com> - 1:0.15.2-1
+- Update to 0.15.2
+
 * Fri Feb 12 2021 Milan Crha <mcrha@redhat.com> - 1:0.14.0-7
 - Rebuilt for evolution-data-server soname version bump
 
