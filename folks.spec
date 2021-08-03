@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.15.2
-Release:        2%{?dist}
+Version:        0.15.3
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -118,6 +118,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Tue Aug 03 2021 Kalev Lember <klember@redhat.com> - 1:0.15.3-1
+- Update to 0.15.3
+
 * Tue Feb 16 2021 Kalev Lember <klember@redhat.com> - 1:0.15.2-2
 - Drop temporary ABI compat
 
