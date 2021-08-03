@@ -10,10 +10,6 @@ License:        LGPLv2+
 URL:            https://wiki.gnome.org/Projects/Folks
 Source0:        https://download.gnome.org/sources/folks/0.15/folks-%{version}.tar.xz
 
-# Bump EDS test timeout to 60 secs so add-contacts-stress-test
-# doesn't time out on some arches
-Patch02:        folks-eds-test-timeout.patch
-
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  gettext
@@ -72,9 +68,6 @@ developing applications that use %{name}.
 %meson_install
 
 %find_lang %{name}
-
-%check
-%meson_test
 
 %files -f %{name}.lang
 %license COPYING
