@@ -2,7 +2,7 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.15.3
+Version:        0.15.4
 Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
@@ -111,6 +111,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Tue Jan 18 2022 David King <amigadave@amigadave.com> - 1:0.15.4-1
+- Update to 0.15.4
+
 * Tue Aug 03 2021 Kalev Lember <klember@redhat.com> - 1:0.15.3-1
 - Update to 0.15.3
 
