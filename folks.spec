@@ -3,7 +3,7 @@
 Name:           folks
 Epoch:          1
 Version:        0.15.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -58,9 +58,6 @@ developing applications that use %{name}.
 %autosetup -p1
 
 %build
-# This package uses gobject introspection and is thus currently incompatible with LTO
-%define _lto_cflags %{nil}
-
 %meson
 %meson_build
 
@@ -111,6 +108,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Sat Feb 12 2022 Jeff Law <jeffreyalaw@gmail.com> - 1:0.15.4-3
+- Re-enable LTO
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1:0.15.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
