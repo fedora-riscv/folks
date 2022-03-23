@@ -2,8 +2,8 @@
 
 Name:           folks
 Epoch:          1
-Version:        0.15.4
-Release:        3%{?dist}
+Version:        0.15.5
+Release:        1%{?dist}
 Summary:        GObject contact aggregation library
 
 License:        LGPLv2+
@@ -11,20 +11,20 @@ URL:            https://wiki.gnome.org/Projects/Folks
 Source0:        https://download.gnome.org/sources/folks/0.15/folks-%{version}.tar.xz
 
 BuildRequires:  gcc
-BuildRequires:  meson
 BuildRequires:  gettext
-BuildRequires:  pkgconfig(dbus-glib-1)
-BuildRequires:  evolution-data-server-devel >= 3.33.2
-BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
-BuildRequires:  glib2-devel
 BuildRequires:  gobject-introspection-devel
-BuildRequires:  libxml2-devel
+BuildRequires:  meson
 BuildRequires:  python3-dbusmock
 BuildRequires:  python3-devel
 BuildRequires:  readline-devel
-BuildRequires:  telepathy-glib-devel
 BuildRequires:  telepathy-glib-vala
 BuildRequires:  vala
+BuildRequires:  pkgconfig(dbus-glib-1)
+BuildRequires:  pkgconfig(gee-0.8) >= 0.8.4
+BuildRequires:  pkgconfig(gio-2.0)
+BuildRequires:  pkgconfig(libedataserver-1.2) >= 3.33.2
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(telepathy-glib)
 
 %description
 libfolks is a library that aggregates people from multiple sources (e.g.
@@ -108,6 +108,9 @@ developing applications that use %{name}.
 %{_datadir}/vala/vapi/%{name}*
 
 %changelog
+* Wed Mar 23 2022 David King <amigadave@amigadave.com> - 1:0.15.5-1
+- Update to 0.15.5
+
 * Sat Feb 12 2022 Jeff Law <jeffreyalaw@gmail.com> - 1:0.15.4-3
 - Re-enable LTO
 
